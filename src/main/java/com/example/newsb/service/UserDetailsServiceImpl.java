@@ -1,5 +1,6 @@
-package com.example.newsb;
+package com.example.newsb.service;
 
+import com.example.newsb.entity.Customer;
 import com.example.newsb.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,15 +23,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        CustomUser customUser = userService.findByLogin(login);
-        if (customUser == null)
+        Customer costumer = userService.findByLogin(login);
+        if (costumer == null)
             throw new UsernameNotFoundException(login + " not found");
 
         List<GrantedAuthority> roles = Arrays.asList(
-                new SimpleGrantedAuthority(customUser.getRole().toString())
+                new SimpleGrantedAuthority(costumer.getRole().toString())
         );
 
-        return new User(customUser.getLogin(), customUser.getPassword(), roles);
+        return new User(costumer.getLogin(), costumer.getPassword(), roles);
     }
 }
 

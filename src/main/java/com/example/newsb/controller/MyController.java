@@ -1,5 +1,7 @@
-package com.example.newsb;
+package com.example.newsb.controller;
 
+import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.UserRole;
 import com.example.newsb.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +34,7 @@ public class MyController {
         User user = getCurrentUser();
         // create builder
         String login = user.getUsername();
-        CustomUser dbUser = userService.findByLogin(login);
+        Customer dbUser = userService.findByLogin(login);
 
         model.addAttribute("login", login);
         model.addAttribute("roles", user.getAuthorities());
@@ -84,14 +86,6 @@ public class MyController {
 
     @GetMapping("/login")
     public String loginPage() {
-
-//        TextField helperFieldText = new TextField("First name");
-//        helperFieldText.setHelperText("Enter all your first names");
-//
-//        TextField helperFieldComponent = new TextField("Last Name");
-//        helperFieldComponent.setHelperComponent(new Span("Family name"));
-//
-//        add(helperFieldText, helperFieldComponent);
         return "login";
     }
 

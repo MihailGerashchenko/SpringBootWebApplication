@@ -1,6 +1,10 @@
 package com.example.newsb;
 
 
+import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.StudentMark;
+import com.example.newsb.entity.Test;
+import com.example.newsb.entity.UserRole;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
@@ -9,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class OneToManyTest {
 
-    CustomUser customUser;
+    Customer costumer;
 
 
     @org.junit.Test
@@ -17,19 +21,19 @@ public class OneToManyTest {
 
         Test test;
         Test test2;
-        customUser = new CustomUser("login", "password", UserRole.STUDENT,
+        costumer = new Customer("login", "password", UserRole.STUDENT,
                 "email", "phone", "address");
         test = new Test("Math", "Cos 30", "Sin 60",
                 "Cos 45", StudentMark.UPCOMING);
         test2 = new Test("Math", "Cos 30", "Sin 60",
                 "Cos 45", StudentMark.UPCOMING);
 
-        customUser.addTest(test);
-        customUser.addTest(test2);
-        List<Test> testsss = customUser.getTests();
+        costumer.addTest(test);
+        costumer.addTest(test2);
+        List<Test> tests = costumer.getTests();
         Assertions.assertAll(
-                () -> assertEquals(2, testsss.size()),
-                () -> assertNotNull(customUser));
+                () -> assertEquals(2, tests.size()),
+                () -> assertNotNull(costumer));
     }
 
 //    @org.junit.Test

@@ -1,4 +1,4 @@
-package com.example.newsb;
+package com.example.newsb.entity;
 
 
 import lombok.Data;
@@ -25,7 +25,7 @@ public class Test {
 
     @ManyToOne
     @JoinColumn(name= "customer_id")
-    private CustomUser customUser;
+    private Customer customer;
 
     public Test(String subject, String question1, String question2,
                 String question3, StudentMark studentMark) {

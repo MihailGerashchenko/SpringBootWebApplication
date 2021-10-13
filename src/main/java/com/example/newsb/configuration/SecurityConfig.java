@@ -1,4 +1,4 @@
-package com.example.newsb;
+package com.example.newsb.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

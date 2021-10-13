@@ -1,4 +1,4 @@
-package com.example.newsb;
+package com.example.newsb.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "Customers")
-public class CustomUser {
+public class Customer {
     @Id
     @GeneratedValue
     private Long id;
@@ -22,15 +22,17 @@ public class CustomUser {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToMany(mappedBy = "customUser", cascade = CascadeType.ALL)
+    // put Lazy
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private List<Test> tests = new ArrayList<>();
 
     private String email;
     private String phone;
     private String address;
 
-    public CustomUser(String login, String password, UserRole role,
-                      String email, String phone, String address) {
+    public Customer(String login, String password, UserRole role,
+                    String email, String phone, String address) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -41,7 +43,7 @@ public class CustomUser {
 
     public void addTest(Test test) {
         tests.add(test);
-        test.setCustomUser(this);
+        test.setCustomer(this);
     }
 
     public Test getTest(int index) {

@@ -1,4 +1,4 @@
-package com.example.newsb;
+package com.example.newsb.entity;
 
 public enum UserRole {
     ADMIN, STUDENT;

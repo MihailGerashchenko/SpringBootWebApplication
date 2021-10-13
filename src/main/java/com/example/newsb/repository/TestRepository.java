@@ -1,6 +1,6 @@
-package com.example.newsb;
+package com.example.newsb.repository;
 
-import org.springframework.data.domain.Sort;
+import com.example.newsb.entity.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
