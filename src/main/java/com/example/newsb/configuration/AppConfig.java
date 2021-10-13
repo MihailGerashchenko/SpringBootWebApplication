@@ -30,40 +30,40 @@ public class AppConfig extends GlobalMethodSecurityConfiguration implements WebM
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CommandLineRunner demo(final UserService userService,
-                                  final TestService testService,
-                                  final PasswordEncoder encoder) {
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... strings) throws Exception {
-                userService.addUser(ADMINISTRATOR,
-                        encoder.encode("password"),
-                        UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
-                userService.addUser(STUDENT,
-                        encoder.encode("password"),
-                        UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
-
-                for (int i = 0; i < 10; i++) {
-                    testService.addTest("Math" + i, "Cos 30", "Sin 60",
-                            "Cos 45", StudentMark.UPCOMING);
-                }
-            }
-        };
-    }
-    @Bean
-    public ResourceBundleMessageSource messageSource(){
-        ResourceBundleMessageSource bundleMessageSource = new ResourceBundleMessageSource();
-        bundleMessageSource.setBasenames("i18n");
-        bundleMessageSource.setDefaultEncoding("UTF-8");
-        return bundleMessageSource;
-    }
-
-    @Bean
-    public LocaleResolver localeResolver(){
-        CookieLocaleResolver lr = new CookieLocaleResolver();
-        lr.setCookieName("lang");
-        return lr;
-    }
+//    @Bean
+//    public CommandLineRunner demo(final UserService userService,
+//                                  final TestService testService,
+//                                  final PasswordEncoder encoder) {
+//        return new CommandLineRunner() {
+//            @Override
+//            public void run(String... strings) throws Exception {
+//                userService.addUser(ADMINISTRATOR,
+//                        encoder.encode("password"),
+//                        UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
+//                userService.addUser(STUDENT,
+//                        encoder.encode("password"),
+//                        UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+//
+//                for (int i = 0; i < 10; i++) {
+//                    testService.addTest("Math" + i, "Cos 30", "Sin 60",
+//                            "Cos 45", StudentMark.UPCOMING);
+//                }
+//            }
+//        };
+//    }
+//    @Bean
+//    public ResourceBundleMessageSource messageSource(){
+//        ResourceBundleMessageSource bundleMessageSource = new ResourceBundleMessageSource();
+//        bundleMessageSource.setBasenames("i18n");
+//        bundleMessageSource.setDefaultEncoding("UTF-8");
+//        return bundleMessageSource;
+//    }
+//
+//    @Bean
+//    public LocaleResolver localeResolver(){
+//        CookieLocaleResolver lr = new CookieLocaleResolver();
+//        lr.setCookieName("lang");
+//        return lr;
+//    }
 }
 

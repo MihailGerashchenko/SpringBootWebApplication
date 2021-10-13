@@ -1,5 +1,6 @@
 package com.example.newsb.service;
 
+import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.StudentMark;
 import com.example.newsb.entity.Test;
 import com.example.newsb.repository.TestRepository;
@@ -17,9 +18,10 @@ public class TestService {
 
     @Transactional
     public Test addTest(String subject, String question1, String question2,
-                        String question3, StudentMark studentMark){
+                        String question3, StudentMark studentMark, Customer customer){
 
         Test test = new Test(subject, question1, question2, question3, studentMark);
+        customer.addTest(test);
         testRepository.save(test);
 //        Customer customer = userRepository.findByLogin("student");
 //        customer.addTest(test);

@@ -55,6 +55,17 @@ public class UserService {
     }
 
     @Transactional
+    public Customer addUserWithTest(String login, String passHash,
+                           UserRole role, String email,
+                           String phone,
+                           String address) {
+
+        Customer custumer = new Customer(login, passHash, role, email, phone, address);
+        userRepository.save(custumer);
+        return custumer;
+    }
+
+    @Transactional
     public void updateUser(String login, String email, String phone) {
         Customer user = userRepository.findByLogin(login);
         if (user == null)
