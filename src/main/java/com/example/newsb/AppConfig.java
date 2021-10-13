@@ -1,5 +1,7 @@
 package com.example.newsb;
 
+import com.example.newsb.service.TestService;
+import com.example.newsb.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,16 +27,20 @@ public class AppConfig extends GlobalMethodSecurityConfiguration implements WebM
 
     @Bean
     public CommandLineRunner demo(final UserService userService,
+                                  final TestService testService,
                                   final PasswordEncoder encoder) {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
                 userService.addUser(ADMINISTRATOR,
                         encoder.encode("password"),
-                        UserRole.ADMIN, "", "", "");
+                        UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
                 userService.addUser(STUDENT,
                         encoder.encode("password"),
-                        UserRole.STUDENT, "", "", "");
+                        UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+                testService.addTest("Math", "Cos 30", "Sin 60",
+                        "Cos 45", StudentMark.UPCOMING);
+
             }
         };
     }

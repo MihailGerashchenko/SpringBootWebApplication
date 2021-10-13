@@ -1,5 +1,6 @@
 package com.example.newsb;
 
+import com.example.newsb.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

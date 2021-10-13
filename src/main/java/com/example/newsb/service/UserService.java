@@ -1,5 +1,9 @@
-package com.example.newsb;
+package com.example.newsb.service;
 
+import com.example.newsb.AppConfig;
+import com.example.newsb.CustomUser;
+import com.example.newsb.UserRepository;
+import com.example.newsb.UserRole;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

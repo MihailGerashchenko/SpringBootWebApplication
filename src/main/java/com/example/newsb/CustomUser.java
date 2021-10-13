@@ -4,11 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="Customers")
+@Table(name = "Customers")
 public class CustomUser {
     @Id
     @GeneratedValue
@@ -19,6 +21,9 @@ public class CustomUser {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToMany(mappedBy = "customUser", cascade = CascadeType.ALL)
+    private List<Test> tests = new ArrayList<>();
 
     private String email;
     private String phone;
@@ -32,5 +37,18 @@ public class CustomUser {
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    public void addTest(Test test) {
+        tests.add(test);
+        test.setCustomUser(this);
+    }
+
+    public Test getTest(int index) {
+        return tests.get(index);
+    }
+
+    public void clearTests() {
+        tests.clear();
     }
 }

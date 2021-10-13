@@ -1,7 +1,6 @@
 package com.example.newsb;
 
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.textfield.TextField;
+import com.example.newsb.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.List;
-
-import static org.apache.el.lang.ELArithmetic.add;
 
 @Controller
 public class MyController {
