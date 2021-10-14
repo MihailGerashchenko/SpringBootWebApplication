@@ -3,17 +3,11 @@ package com.example.newsb.configuration;
 import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.StudentMark;
 import com.example.newsb.entity.UserRole;
-import com.example.newsb.repository.TestRepository;
-import com.example.newsb.repository.UserRepository;
 import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
-
-import static com.example.newsb.configuration.AppConfig.ADMINISTRATOR;
 
 @Component
 public class FulfillData {
@@ -50,11 +44,22 @@ public class FulfillData {
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
 
-        for (int i = 0; i < 10; i++) {
-            testService.addTest("Math" + i, "Cos 30", "Sin 60",
-                    "Cos 45", StudentMark.UPCOMING, customer);
+        for (int i = 1; i < 10; i++) {
+            testService.addTest("Algebra test №" + i, "Sequences", "Trigonometry",
+                    "Equalities", StudentMark.UPCOMING, customer);
         }
-
+        for (int i = 1; i < 4; i++) {
+            testService.addTestWithoutCustomer("Phisic test №" + i, "Conservation of Energy", "Dynamics",
+                    "Kinematics", StudentMark.UPCOMING);
+        }
+        for (int i = 1; i < 4; i++) {
+            testService.addTestWithoutCustomer("Chemistry test №" + i, "Periodic Table", "Electrochemistry",
+                    "Thermochemistry", StudentMark.UPCOMING);
+        }
+        for (int i = 1; i < 4; i++) {
+            testService.addTestWithoutCustomer("Poetry test №" + i, "Nikolay Gumilyov", "Bulat Okudzhava",
+                    "Anna Akhmatova", StudentMark.UPCOMING);
+        }
     }
 
 }

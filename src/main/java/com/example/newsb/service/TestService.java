@@ -27,4 +27,12 @@ public class TestService {
 //        customer.addTest(test);
         return test;
     }
+    @Transactional
+    public Test addTestWithoutCustomer(String subject, String question1, String question2,
+                        String question3, StudentMark studentMark){
+
+        Test test = new Test(subject, question1, question2, question3, studentMark);
+        testRepository.save(test);
+        return test;
+    }
 }
