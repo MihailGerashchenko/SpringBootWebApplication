@@ -1,44 +1,38 @@
 package com.example.newsb.repository;
 
+import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TestRepository extends JpaRepository<Test, Long> {
-    @Override
-    List<Test> findAll();
 
-    @Override
-    List<Test> findAllById(Iterable<Long> longs);
+//    Page<Test> findByTag(String tag, Pageable pageable);
+//
+//    Page<Test> findAll(Pageable pageable);
 
-    @Override
-    <S extends Test> S save(S entity);
+//    List<Test> listTests(Customer customer, int start, int count);
+//
+//    List<Test> listTests(String pattern);
+//
+//    List<Test> listTests(Customer customer);
 
-    @Override
-    Optional<Test> findById(Long aLong);
+    @Query("SELECT c FROM Test c")
+    List<Test> allTests();
 
-    @Override
-    boolean existsById(Long aLong);
+//    @Override
+//    Page<Test> findAll(Pageable pageable);
 
-    @Override
+    @Query("SELECT c FROM Test c WHERE c.subject LIKE :subject")
+    List<Test>  list(@Param("subject") String subject);
+
+    @Query("SELECT COUNT(c) FROM Test c")
     long count();
-
-    @Override
-    void deleteById(Long aLong);
-
-    @Override
-    void delete(Test entity);
-
-    @Override
-    void deleteAllById(Iterable<? extends Long> longs);
-
-    @Override
-    void deleteAll(Iterable<? extends Test> entities);
-
-    @Override
-    void deleteAll();
-
 
 }

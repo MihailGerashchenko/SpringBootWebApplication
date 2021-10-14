@@ -3,237 +3,82 @@
 <html>
 <head>
     <title>Testing</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Your login is: ${login}, your role is:</h1>
-        <c:forEach var="s" items="${roles}">
-            <h3><c:out value="${s}" /></h3>
-        </c:forEach>
 
-        <c:if test="${admin}">
-            <c:url value="/admin" var="adminUrl" />
-            <p><a type="submit" class="btn btn-primary" href="${adminUrl}">The administrator's page</a></p>
-        </c:if>
+<div class="container">
+    <h1>Your login is: ${login}, your role is:</h1>
+    <c:forEach var="s" items="${roles}">
+        <h3><c:out value="${s}"/></h3>
+    </c:forEach>
 
-        <c:url value="/update" var="updateUrl" />
-        <form action="${updateUrl}" method="POST">
-<%--            E-mail:<br/><input type="text" name="email" value="${email}" /><br/>--%>
-<%--            Phone:<br/><input type="text" name="phone" value="${phone}" /><br/>--%>
-<%--            Address:<br/><input type="text" name="phone" value="${address}" /><br/>--%>
-            <input class="form-control form-group" type="text" name="email" value="${email}" placeholder="Email">
-            <input class="form-control form-group" type="text" name="phone" value="${phone}" placeholder="Phone">
-            <input class="form-control form-group" type="text" name="address" value="${address}" placeholder="Address">
-<%--            <input type="submit" value="Update" />--%>
-            <input type="submit" class="btn btn-primary" value=Update>
-        </form>
+    <c:if test="${admin}">
+        <c:url value="/admin" var="adminUrl"/>
+        <p><a href="${adminUrl}">Click</a> for admin page</p>
+    </c:if>
 
-        <c:url value="/logout" var="logoutUrl" />
-        <p><a type="submit" class="btn btn-primary" href="${logoutUrl}">LOGOUT</a></p>
+    <c:url value="/update" var="updateUrl"/>
+    <form action="${updateUrl}" method="POST">
+        <input class="form-control form-group" type="text" name="email" value="${email}" placeholder="Email">
+        <input class="form-control form-group" type="text" name="phone" value="${phone}" placeholder="Phone">
+        <input class="form-control form-group" type="text" name="address" value="${address}" placeholder="Address">
+        <input type="submit" class="btn btn-primary" value="Update">
+    </form>
+
+    <c:url value="/logout" var="logoutUrl"/>
+    <p><a input type="submit" class="btn btn-primary" href="${logoutUrl}">Logout</a></p>
+</div>
+
+<%--<c:forEach var="test" items="${tests.content}">--%>
+<%--    <div>--%>
+<%--        Subject <c:out value="${test.subject}"/>--%>
+<%--        Quaestion1: <c:out value="${test.question1}"/>--%>
+<%--        Quaestion2: <c:out value="${test.question2}"/>--%>
+<%--        Quaestion3: <c:out value="${test.question3}"/>--%>
+<%--        Mark: <c:out value="${test.studentMark.toString()}"/>--%>
+<%--        Customer: <c:out value="${test.customer.getLogin()}"/>--%>
+<%--    </div>--%>
+<%--</c:forEach>--%>
+<h1>Choose your test according the subject and follow the requirements</h1>
+<c:forEach var="test" items="${tests.content}">
+    <div class="list-group">
+
+            <%--    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">--%>
+            <%--        <div class="d-flex w-100 justify-content-between">--%>
+            <%--            <h5 class="mb-1">Subject <c:out value="${test.subject}"/></h5>--%>
+            <%--            <small>You have one hour</small>--%>
+            <%--        </div>--%>
+            <%--        <p class="mb-1">Quaestion1: <c:out value="${test.question1}"/>--%>
+            <%--            Quaestion2: <c:out value="${test.question2}"/>--%>
+            <%--            Quaestion3: <c:out value="${test.question3}"/>--%>
+            <%--            Mark: <c:out value="${test.studentMark.toString()}"/>--%>
+            <%--            Customer: <c:out value="${test.customer.getLogin()}"/></p>--%>
+            <%--        <small>And some small print.</small>--%>
+            <%--    </a>--%>
+        <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Subject <c:out value="${test.subject}"/></h5>
+                <small>Duration is one hour</small>
+            </div>
+            <p class="mb-1">
+                Quaestion1: <c:out value="${test.question1}"/>
+                Quaestion2: <c:out value="${test.question2}"/>
+                Quaestion3: <c:out value="${test.question3}"/>
+                StudentMark: <c:out value="${test.studentMark.toString()}"/>
+                Customer: <c:out value="${test.customer.getLogin()}"/></p>
+            <small>Each test has one or more correct answers. The sequence of your answers is the relation between right answers and general numbers of questions.</small>
+        </a>
+            <%--    <a href="#" class="list-group-item list-group-item-action">--%>
+            <%--        <div class="d-flex w-100 justify-content-between">--%>
+            <%--            <h5 class="mb-1">List group item heading</h5>--%>
+            <%--            <small class="text-muted">3 days ago</small>--%>
+            <%--        </div>--%>
+            <%--        <p class="mb-1">Some placeholder content in a paragraph.</p>--%>
+            <%--        <small class="text-muted">And some muted small print.</small>--%>
+            <%--    </a>--%>
     </div>
-
-    <div class="container">
-        <h3>List of alloweded Tests </h3>
-
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul id="groupList" class="nav navbar-nav">
-                        <li><button type="button" id="add_contact" class="btn btn-default navbar-btn">Add Contact</button></li>
-                        <li><button type="button" id="add_group" class="btn btn-default navbar-btn">Add Group</button></li>
-                        <li><button type="button" id="delete_contact" class="btn btn-default navbar-btn">Delete Contact</button></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/">Default</a></li>
-                                <c:forEach items="${tests}" var="test">
-                                    <li><a href="/test/${test.id}">${test.name}</a></li>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left" role="search" action="/search" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="pattern" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <td></td>
-                <td><b>Subject</b></td>
-                <td><b>Question1</b></td>
-                <td><b>Question2</b></td>
-                <td><b>question3</b></td>
-                <td><b>StudentMark</b></td>
-                <td><b>Student</b></td>
-
-            </tr>
-            </thead>
-            <c:forEach items="${tests}" var="test">
-                <tr>
-                    <td><input type="checkbox" name="toDelete[]" value="${test.id}" id="checkbox_${test.id}"/></td>
-                    <td>${test.subject}</td>
-                    <td>${test.question1}</td>
-                    <td>${test.question2}</td>
-                    <td>${test.question3}</td>
-                    <td>${test.studentMark}</td>
-                    <td>${test.customer}</td>
-                    <c:choose>
-                        <c:when test="${test.customer ne null}">
-                            <td>${test.customer.name}</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>Default</td>
-                        </c:otherwise>
-                    </c:choose>
-                </tr>
-            </c:forEach>
-        </table>
-
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <c:forEach var="i" begin="1" end="${pages}">
-                    <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-                </c:forEach>
-            </ul>
-        </nav>
-    </div>
-
-    <script>
-        // $('.dropdown-toggle').dropdown();
-        //
-        // $('#add_test').click(function(){
-        //     window.location.href='/contact_add_page';
-        // });
-        //
-        // $('#add_group').click(function(){
-        //     window.location.href='/group_add_page';
-        // });
-        //
-        // $('#delete_test').click(function(){
-        //     var data = { 'toDelete[]' : []};
-        //     $(":checked").each(function() {
-        //         data['toDelete[]'].push($(this).val());
-        //     });
-        //     $.post("/contact/delete", data, function(data, status) {
-        //         window.location.reload();
-        //     });
-        // });
-    </script>
+</c:forEach>
 </body>
 </html>
-
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Prog.kiev.ua</title>--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">--%>
-<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--%>
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--%>
-<%--</head>--%>
-
-<%--<body>--%>
-<%--<div class="container">--%>
-<%--    <h3><img height="50" width="55" />"/><a href="/">List of alloweded Tests </a></h3>--%>
-
-<%--    <nav class="navbar navbar-default">--%>
-<%--        <div class="container-fluid">--%>
-<%--            <!-- Collect the nav links, forms, and other content for toggling -->--%>
-<%--            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--%>
-<%--                <ul id="groupList" class="nav navbar-nav">--%>
-<%--                    <li><button type="button" id="add_contact" class="btn btn-default navbar-btn">Add Contact</button></li>--%>
-<%--                    <li><button type="button" id="add_group" class="btn btn-default navbar-btn">Add Group</button></li>--%>
-<%--                    <li><button type="button" id="delete_contact" class="btn btn-default navbar-btn">Delete Contact</button></li>--%>
-<%--                    <li class="dropdown">--%>
-<%--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups <span class="caret"></span></a>--%>
-<%--                        <ul class="dropdown-menu">--%>
-<%--                            <li><a href="/">Default</a></li>--%>
-<%--                            <c:forEach items="${groups}" var="group">--%>
-<%--                                <li><a href="/group/${group.id}">${group.name}</a></li>--%>
-<%--                            </c:forEach>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
-<%--                </ul>--%>
-<%--                <form class="navbar-form navbar-left" role="search" action="/search" method="post">--%>
-<%--                    <div class="form-group">--%>
-<%--                        <input type="text" class="form-control" name="pattern" placeholder="Search">--%>
-<%--                    </div>--%>
-<%--                    <button type="submit" class="btn btn-default">Submit</button>--%>
-<%--                </form>--%>
-<%--            </div><!-- /.navbar-collapse -->--%>
-<%--        </div><!-- /.container-fluid -->--%>
-<%--    </nav>--%>
-
-<%--    <table class="table table-striped">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <td></td>--%>
-<%--            <td><b>Name</b></td>--%>
-<%--            <td><b>Surname</b></td>--%>
-<%--            <td><b>Phone</b></td>--%>
-<%--            <td><b>E-mail</b></td>--%>
-<%--            <td><b>Group</b></td>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <c:forEach items="${contacts}" var="contact">--%>
-<%--            <tr>--%>
-<%--                <td><input type="checkbox" name="toDelete[]" value="${contact.id}" id="checkbox_${contact.id}"/></td>--%>
-<%--                <td>${contact.name}</td>--%>
-<%--                <td>${contact.surname}</td>--%>
-<%--                <td>${contact.phone}</td>--%>
-<%--                <td>${contact.email}</td>--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${contact.group ne null}">--%>
-<%--                        <td>${contact.group.name}</td>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <td>Default</td>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--    </table>--%>
-
-<%--    <nav aria-label="Page navigation">--%>
-<%--        <ul class="pagination">--%>
-<%--            <c:forEach var="i" begin="1" end="${pages}">--%>
-<%--                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
-<%--            </c:forEach>--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
-<%--</div>--%>
-
-<%--<script>--%>
-<%--    $('.dropdown-toggle').dropdown();--%>
-
-<%--    $('#add_contact').click(function(){--%>
-<%--        window.location.href='/contact_add_page';--%>
-<%--    });--%>
-
-<%--    $('#add_group').click(function(){--%>
-<%--        window.location.href='/group_add_page';--%>
-<%--    });--%>
-
-<%--    $('#delete_contact').click(function(){--%>
-<%--        var data = { 'toDelete[]' : []};--%>
-<%--        $(":checked").each(function() {--%>
-<%--            data['toDelete[]'].push($(this).val());--%>
-<%--        });--%>
-<%--        $.post("/contact/delete", data, function(data, status) {--%>
-<%--            window.location.reload();--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
-<%--</body>--%>
-<%--</html>--%>

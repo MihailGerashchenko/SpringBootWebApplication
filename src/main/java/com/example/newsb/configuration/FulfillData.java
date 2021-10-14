@@ -5,6 +5,7 @@ import com.example.newsb.entity.StudentMark;
 import com.example.newsb.entity.UserRole;
 import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
@@ -48,6 +49,7 @@ public class FulfillData {
             testService.addTest("Algebra test №" + i, "Sequences", "Trigonometry",
                     "Equalities", StudentMark.UPCOMING, customer);
         }
+
         for (int i = 1; i < 4; i++) {
             testService.addTestWithoutCustomer("Phisic test №" + i, "Conservation of Energy", "Dynamics",
                     "Kinematics", StudentMark.UPCOMING);

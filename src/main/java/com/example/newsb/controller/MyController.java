@@ -1,8 +1,12 @@
 package com.example.newsb.controller;
 
 import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.Test;
 import com.example.newsb.entity.UserRole;
+import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,26 +26,39 @@ import java.util.List;
 public class MyController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final TestService testService;
+    private static final int ITEMS_PER_PAGE = 6;
 
-    public MyController(UserService userService, PasswordEncoder passwordEncoder) {
+    public MyController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.testService = testService;
+    }
+
+    @GetMapping("/1")
+    public String index1(Model model, Pageable pageable) {
+//        Page<Test> tests = testService.getAllTestsPageable(pageable);
+//        model.addAttribute("tests", tests);
+        return "jjj";
     }
 
     @GetMapping("/")
-    public String index(Model model, HttpServletRequest request) {
+    public String index(Model model, Pageable pageable) {
 
         User user = getCurrentUser();
-        // create builder
+//        // create builder
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
-
+//
         model.addAttribute("login", login);
         model.addAttribute("roles", user.getAuthorities());
         model.addAttribute("admin", isAdmin(user));
         model.addAttribute("email", dbUser.getEmail());
         model.addAttribute("phone", dbUser.getPhone());
         model.addAttribute("address", dbUser.getAddress());
+
+        Page<Test> tests = testService.getAllTestsPageable(pageable);
+        model.addAttribute("tests", tests);
 
         return "index";
     }
