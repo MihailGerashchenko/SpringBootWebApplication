@@ -1,6 +1,7 @@
 package com.example.newsb.service;
 
 import com.example.newsb.configuration.AppConfig;
+import com.example.newsb.configuration.FulfillData;
 import com.example.newsb.entity.Customer;
 import com.example.newsb.repository.UserRepository;
 import com.example.newsb.entity.UserRole;
@@ -33,7 +34,7 @@ public class UserService {
         ids.forEach(id -> {
             Optional<Customer> user = userRepository.findById(id);
             user.ifPresent(u -> {
-                if ( ! AppConfig.ADMINISTRATOR.equals(u.getLogin())) {
+                if ( ! FulfillData.ADMINISTRATOR.equals(u.getLogin())) {
                     userRepository.deleteById(u.getId());
                 }
             });

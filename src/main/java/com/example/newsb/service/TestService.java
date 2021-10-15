@@ -36,46 +36,10 @@ public class TestService {
         testRepository.save(test);
         return test;
     }
-    @Transactional(readOnly = true)
-    public long count() {
-        return testRepository.count();
-    }
-
-    @Transactional(readOnly=true)
-    public List<Test> searchTests(String pattern) {
-        return testRepository.list(pattern);
-    }
-
-
-//
-//
-//    @Transactional(readOnly = true)
-//    public List<Test> listTests(Customer customer, int start,
-//                                int count) {
-//        return testRepository.listTests(customer, start, count);
-//    }
-//
-//    @Transactional
-//    public List<Test> listTests(Customer customer) {
-//        return testRepository.listTests(customer, 0, 0);
-//    }
-//
-//
-//
-    @Transactional(readOnly = true)
-    public List<Test> getAllTests() {
-        return testRepository.allTests();
-    }
 
     @Transactional(readOnly = true)
     public Page<Test> getAllTestsPageable(Pageable pageable) {
         return testRepository.findAll(pageable);
     }
-
-//
-//    @Transactional(readOnly = true)
-//    public Test findBySubject(String subject) {
-//        return testRepository.findBySubject(subject);
-//    }
 
 }

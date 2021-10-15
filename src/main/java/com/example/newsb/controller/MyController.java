@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,21 +34,22 @@ public class MyController {
         this.testService = testService;
     }
 
-    @GetMapping("/1")
-    public String index1(Model model, Pageable pageable) {
-//        Page<Test> tests = testService.getAllTestsPageable(pageable);
-//        model.addAttribute("tests", tests);
-        return "jjj";
-    }
+//    @GetMapping("/1")
+//    public String index1(Model model, Pageable pageable) {
+////        Page<Test> tests = testService.getAllTestsPageable(pageable);
+////        model.addAttribute("tests", tests);
+//        return "jjj";
+//    }
 
     @GetMapping("/")
     public String index(Model model, Pageable pageable) {
 
         User user = getCurrentUser();
-//        // create builder
+
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
-//
+
+
         model.addAttribute("login", login);
         model.addAttribute("roles", user.getAuthorities());
         model.addAttribute("admin", isAdmin(user));
@@ -139,13 +139,21 @@ public class MyController {
 
     private boolean isAdmin(User user) {
         Collection<GrantedAuthority> roles = user.getAuthorities();
-        //streem
+//        //streem
+//        roles.stream().filter("ROLE_ADMIN".equals(auth.getAuthority()));
+//                .forEach(auth ->{
+//                            )
+//                        };
+//        return true;
+//    }
+//    }
+//    });
+
         for (GrantedAuthority auth : roles) {
-            if ("ROLE_ADMIN".equals(auth.getAuthority()))
-                return true;
+            if ("ROLE_ADMIN".equals(auth.getAuthority())) ;
+            return true;
         }
 
         return false;
     }
 }
-

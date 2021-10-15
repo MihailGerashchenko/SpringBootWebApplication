@@ -13,18 +13,12 @@ import java.util.Optional;
 
 public interface TestRepository extends JpaRepository<Test, Long> {
 
-//    Page<Test> findByTag(String tag, Pageable pageable);
-//
-//    Page<Test> findAll(Pageable pageable);
-
-//    List<Test> listTests(Customer customer, int start, int count);
-//
-//    List<Test> listTests(String pattern);
-//
-//    List<Test> listTests(Customer customer);
-
     @Query("SELECT c FROM Test c")
     List<Test> allTests();
+//
+//    Optional<Test> findBySubject(String subject);
+
+    Optional<Test> findById(long id);
 
 //    @Override
 //    Page<Test> findAll(Pageable pageable);

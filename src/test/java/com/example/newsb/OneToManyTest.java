@@ -27,7 +27,7 @@ public class OneToManyTest {
                 "Cos 45", StudentMark.UPCOMING);
         test2 = new Test("Math", "Cos 30", "Sin 60",
                 "Cos 45", StudentMark.UPCOMING);
-
+        //split for 2 test
         costumer.addTest(test);
         costumer.addTest(test2);
         List<Test> tests = costumer.getTests();
