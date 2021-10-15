@@ -67,13 +67,14 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(String login, String email, String phone) {
+    public void updateUser(String login, String email, String phone, String address) {
         Customer user = userRepository.findByLogin(login);
         if (user == null)
             return;
 
         user.setEmail(email);
         user.setPhone(phone);
+        user.setAddress(address);
 
         userRepository.save(user);
     }

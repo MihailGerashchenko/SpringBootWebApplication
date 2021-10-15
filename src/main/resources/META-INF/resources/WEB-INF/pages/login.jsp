@@ -15,15 +15,26 @@
 <div class="container">
     <div>
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-<spring:message code="message.language"/>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <li onclick="changeLang('en')"><a class="dropdown-item" href="#"><spring:message code="message.ru"/></a></li>
-    <li onclick="changeLang('uk')"><a class="dropdown-item" href="#"><spring:message code="message.ua"/></a></li>
-        </ul>
-        </li>
+<%--<li class="nav-item dropdown">--%>
+<%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >--%>
+<%--<spring:message code="message.language"/>--%>
+<%--    </a>--%>
+<%--    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">--%>
+<%--    <li onclick="changeLang('en')"><a class="dropdown-item" href="#"><spring:message code="message.ru"/></a></li>--%>
+<%--    <li onclick="changeLang('uk')"><a class="dropdown-item" href="#"><spring:message code="message.ua"/></a></li>--%>
+<%--        </ul>--%>
+<%--        </li>--%>
+<%--    <div class="d-flex">--%>
+<%--        <div class="dropdown me-1">--%>
+<%--            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">--%>
+<%--                Offset--%>
+<%--            </button>--%>
+<%--            <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">--%>
+<%--                <li><a class="dropdown-item" href="#">Action</a></li>--%>
+<%--                <li><a class="dropdown-item" href="#">Another action</a></li>--%>
+<%--                <li><a class="dropdown-item" href="#">Something else here</a></li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
 
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/login?lang=en">English</a>
         &nbsp;|&nbsp;
@@ -34,20 +45,23 @@
     </div>
 
     <c:url value="/j_spring_security_check" var="loginUrl"/>
-    <h3><spring:message code="message.login" /></h3>
+    <h3><spring:message code="messages.login1" /></h3>
     <form action="${loginUrl}" method="POST">
-        <input class="form-control form-group" type="text" name="j_login" placeholder="Login">
-        <input class="form-control form-group" type="password" name="j_password" placeholder="Password">
-        <input type="submit" class="btn btn-primary" value="Log in">
+        <input class="form-control form-group" type="text" name="j_login" placeholder=<spring:message code="messages.login" />>
+        <input class="form-control form-group" type="password" name="j_password" placeholder=<spring:message code="messages.password" />>
+        <input type="submit" class="btn btn-primary" value=<spring:message code="messages.in" />>
         <ul>
         </ul>
-        <p><a href="/register"><input class="btn btn-primary" value="Sign up"></a></p>
+        <p><a href="/register"><input class="btn btn-primary" value=<spring:message code="messages.signup" />></a></p>
         <c:if test="${param.error ne null}">
-            <p>Wrong login or password!</p>
+
+
+            <p><spring:message code="message.wrong.data" /></p>
         </c:if>
 
         <c:if test="${param.logout ne null}">
-            <p>Chao!</p>
+
+            <p><spring:message code="messages.logout" /></p>
         </c:if>
     </form>
 </div>

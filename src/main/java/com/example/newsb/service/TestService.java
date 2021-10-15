@@ -41,5 +41,9 @@ public class TestService {
     public Page<Test> getAllTestsPageable(Pageable pageable) {
         return testRepository.findAll(pageable);
     }
+//    @Transactional(readOnly = true)
+//    public Page<Test> getAllTestsPageable(Pageable pageable) {
+//        return testRepository.findAll(pageable);
+//    }
 
 }

@@ -65,11 +65,12 @@ public class MyController {
 
     @PostMapping(value = "/update")
     public String update(@RequestParam(required = false) String email,
-                         @RequestParam(required = false) String phone) {
+                         @RequestParam(required = false) String phone,
+                         @RequestParam(required = false) String address ) {
         User user = getCurrentUser();
 
         String login = user.getUsername();
-        userService.updateUser(login, email, phone);
+        userService.updateUser(login, email, phone, address);
 
         return "redirect:/";
     }
@@ -115,6 +116,7 @@ public class MyController {
     @PreAuthorize("hasRole('ROLE_ADMIN')") // !!!
     public String admin(Model model) {
         model.addAttribute("users", userService.getAllUsers());
+//        model.addAttribute("tests", testService.getAllTestsPageable());
         return "admin";
     }
 
@@ -125,10 +127,10 @@ public class MyController {
         return "unauthorized";
     }
 
-    @GetMapping("/international")
-    public String getInternationalPage() {
-        return "international";
-    }
+//    @GetMapping("/international")
+//    public String getInternationalPage() {
+//        return "international";
+//    }
 
     private User getCurrentUser() {
         return (User) SecurityContextHolder
