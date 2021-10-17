@@ -24,9 +24,9 @@ public class OneToManyTest {
         costumer = new Customer("login", "password", UserRole.STUDENT,
                 "email", "phone", "address");
         test = new Test("Math", "Cos 30", "Sin 60",
-                "Cos 45", StudentMark.UPCOMING);
+                "Cos 45", "25 minutes", StudentMark.UPCOMING);
         test2 = new Test("Math", "Cos 30", "Sin 60",
-                "Cos 45", StudentMark.UPCOMING);
+                "Cos 45", "30 minutes", StudentMark.UPCOMING);
         //split for 2 test
         costumer.addTest(test);
         costumer.addTest(test2);

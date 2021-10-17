@@ -55,6 +55,7 @@
 <p><a type="submit" class="btn btn-primary" href="/"><spring:message code="messages.turnback" /></a></p>
 <c:url value="/logout" var="logoutUrl" />
 <p><a type="submit" class="btn btn-primary" a href="${logoutUrl}"><spring:message code="messages.logoutbutton" /></a></p>
+<p><a href="/createtest"><input class="btn btn-primary" value=<spring:message code="messages.signup" />></a></p>
 
 <%--<c:forEach var="test" items="${tests.content}">--%>
 <%--    <div>--%>

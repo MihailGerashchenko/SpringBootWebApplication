@@ -34,22 +34,17 @@ public class FulfillData {
         Customer customer = userService.addUserWithTest(STUDENT,
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
-        //refactor
-//        for (int i = 1; i < 10; i++) {
-            testService.addTest("Algebra test №" , "Sequences", "Trigonometry",
-                    "Equalities", StudentMark.UPCOMING, customer);
-//        }
-//        for (int i = 1; i < 4; i++) {
-            testService.addTestWithoutCustomer("Phisic test №" , "Conservation of Energy", "Dynamics",
-                    "Kinematics", StudentMark.UPCOMING);
-//        }
-//        for (int i = 1; i < 4; i++) {
-            testService.addTestWithoutCustomer("Chemistry test №" , "Periodic Table", "Electrochemistry",
-                    "Thermochemistry", StudentMark.UPCOMING);
-//        }
-//        for (int i = 1; i < 4; i++) {
-            testService.addTestWithoutCustomer("Poetry test №" , "Nikolay Gumilyov", "Bulat Okudzhava",
-                    "Anna Akhmatova", StudentMark.UPCOMING);
-//        }
+
+        testService.addTest("Algebra test №", "Sequences", "Trigonometry",
+                "Equalities", "25 minutes", StudentMark.UPCOMING, customer);
+
+        testService.addTestWithoutCustomer("Phisic test №", "Conservation of Energy", "Dynamics",
+                "Kinematics", "40 minutes", StudentMark.UPCOMING);
+
+        testService.addTestWithoutCustomer("Chemistry test №", "Periodic Table", "Electrochemistry",
+                "Thermochemistry", "35 minutes", StudentMark.UPCOMING);
+
+        testService.addTestWithoutCustomer("Poetry test №", "Nikolay Gumilyov", "Bulat Okudzhava",
+                "Anna Akhmatova", "30 minutes", StudentMark.UPCOMING);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class TestService {
 
     @Transactional
     public Test addTest(String subject, String question1, String question2,
-                        String question3, StudentMark studentMark, Customer customer) {
+                        String question3, String time, StudentMark studentMark, Customer customer) {
 
-        Test test = new Test(subject, question1, question2, question3, studentMark);
+        Test test = new Test(subject, question1, question2, question3, time, studentMark);
         customer.addTest(test);
         testRepository.save(test);
         return test;
@@ -31,8 +32,8 @@ public class TestService {
 
     @Transactional()
     public Test addTestWithoutCustomer(String subject, String question1, String question2,
-                                       String question3, StudentMark studentMark) {
-        Test test = new Test(subject, question1, question2, question3, studentMark);
+                                       String question3, String time, StudentMark studentMark) {
+        Test test = new Test(subject, question1, question2, question3, time, studentMark);
         testRepository.save(test);
         return test;
     }
@@ -45,5 +46,20 @@ public class TestService {
 //    public Page<Test> getAllTestsPageable(Pageable pageable) {
 //        return testRepository.findAll(pageable);
 //    }
+
+    @Transactional
+    public void updateTest(String subject, String question1, String question2,
+                           String question3, String time, StudentMark studentMark) {
+        Test test = testRepository.findBySubject(subject);
+        if (test == null)
+            return;
+        test.setSubject(subject);
+        test.setQuestion1(question1);
+        test.setQuestion2(question2);
+        test.setQuestion3(question3);
+        test.setTime(time);
+        test.setStudentMark(studentMark);
+        testRepository.save(test);
+    }
 
 }

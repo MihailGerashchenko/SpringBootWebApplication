@@ -1,6 +1,7 @@
 package com.example.newsb.controller;
 
 import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.StudentMark;
 import com.example.newsb.entity.Test;
 import com.example.newsb.entity.UserRole;
 import com.example.newsb.service.TestService;
@@ -18,6 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +31,6 @@ public class MyController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final TestService testService;
-    private static final int ITEMS_PER_PAGE = 6;
 
     public MyController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
         this.userService = userService;
@@ -66,7 +70,7 @@ public class MyController {
     @PostMapping(value = "/update")
     public String update(@RequestParam(required = false) String email,
                          @RequestParam(required = false) String phone,
-                         @RequestParam(required = false) String address ) {
+                         @RequestParam(required = false) String address) {
         User user = getCurrentUser();
 
         String login = user.getUsername();
@@ -74,6 +78,40 @@ public class MyController {
 
         return "redirect:/";
     }
+
+//    @GetMapping(value = "/createtest")
+//    public String createTest(@RequestParam(required = false) String subject,
+//                             @RequestParam(required = false) String question1,
+//                             @RequestParam(required = false) String question2,
+//                             @RequestParam(required = false) String question3,
+//                             @RequestParam(required = false) String time,
+//                             @RequestParam(required = false) StudentMark studentMark,
+//                             Model model) {
+//
+//        model.addAttribute("subject", subject);
+//        model.addAttribute("question1", question1);
+//        model.addAttribute("question2", question2);
+//        model.addAttribute("question3", question3);
+//        model.addAttribute("time", time);
+//        model.addAttribute("studentMark", studentMark);
+//
+//        testService.addTestWithoutCustomer(subject, question1, question2, question3, time, studentMark);
+//        model.addAttribute("subject", subject);
+//        return "newtest";
+//    }
+//
+//    @PostMapping(value = "/updatetest")
+//    public String updateTest(@RequestParam(required = false) String subject,
+//                             @RequestParam(required = false) String question1,
+//                             @RequestParam(required = false) String question2,
+//                             @RequestParam(required = false) String question3,
+//                             @RequestParam(required = false) String time,
+//                             @RequestParam(required = false) StudentMark studentMark,
+//                             Model model) {
+//        testService.updateTest(subject, question1, question2, question3, time, studentMark);
+//        return "redirect:/";
+//    }
+
 
     // combine in DTO
     @PostMapping(value = "/newuser")
@@ -141,21 +179,17 @@ public class MyController {
 
     private boolean isAdmin(User user) {
         Collection<GrantedAuthority> roles = user.getAuthorities();
-//        //streem
+        //streem
 //        roles.stream().filter("ROLE_ADMIN".equals(auth.getAuthority()));
-//                .forEach(auth ->{
-//                            )
-//                        };
-//        return true;
-//    }
-//    }
-//    });
+        return roles.stream().anyMatch(auth -> "ROLE_ADMIN".equals(auth.getAuthority()));
 
-        for (GrantedAuthority auth : roles) {
-            if ("ROLE_ADMIN".equals(auth.getAuthority())) ;
-            return true;
-        }
-
-        return false;
     }
+
+//        for (GrantedAuthority auth : roles) {
+//            if ("ROLE_ADMIN".equals(auth.getAuthority())) ;
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }

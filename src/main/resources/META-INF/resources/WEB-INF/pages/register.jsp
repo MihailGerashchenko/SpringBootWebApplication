@@ -16,7 +16,7 @@
             <input class="form-control form-group" type="password" name="password" placeholder="Password">
             <input class="form-control form-group" type="email" name="email" placeholder="Email">
             <input class="form-control form-group" type="phone" name="phone" placeholder="Phone">
-            <input class="form-control form-group" type="adress" name="address" placeholder="Adress">
+            <input class="form-control form-group" type="adress" name="address" placeholder="Address">
             <input type="submit" class="btn btn-primary" value="Add">
             <c:if test="${exists ne null}">
             <p>User already exists!</p>

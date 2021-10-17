@@ -44,6 +44,7 @@
                 <spring:message code="messages.question1" /> <c:out value="${test.question1}"/>
                 <spring:message code="messages.question2" /> <c:out value="${test.question2}"/>
                 <spring:message code="messages.question3" /> <c:out value="${test.question3}"/>
+                <spring:message code="messages.time" /> <c:out value="${test.time}"/>
                 <spring:message code="messages.mark" /> <c:out value="${test.studentMark.toString()}"/>
                 <spring:message code="messages.customer" /> <c:out value="${test.customer.getLogin()}"/></p>
             <small><spring:message code="messages.testrequirements" /></small>

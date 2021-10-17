@@ -20,6 +20,7 @@ public class Test {
     private String question1;
     private String question2;
     private String question3;
+    private String time;
     @Enumerated(EnumType.STRING)
     private StudentMark studentMark;
 
@@ -28,11 +29,12 @@ public class Test {
     private Customer customer;
 
     public Test(String subject, String question1, String question2,
-                String question3, StudentMark studentMark) {
+                String question3, String time, StudentMark studentMark) {
         this.subject = subject;
         this.question1 = question1;
         this.question2 = question2;
         this.question3 = question3;
+        this.time = time;
         this.studentMark = studentMark;
     }
 }
