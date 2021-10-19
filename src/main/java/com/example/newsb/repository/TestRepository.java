@@ -1,15 +1,11 @@
 package com.example.newsb.repository;
 
-import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.Test;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TestRepository extends JpaRepository<Test, Long> {
 
@@ -32,8 +28,8 @@ public interface TestRepository extends JpaRepository<Test, Long> {
     @Query("SELECT COUNT(c) FROM Test c")
     long count();
 
-    //refactor
-    @Query("SELECT u FROM Test u where u.subject = :subject")
-    Test findBySubject(@Param("subject") String subject);
+//    //refactor
+//    @Query("SELECT u FROM Test u where u.subject = :subject")
+//    Test findBySubject(@Param("subject") String subject);
 
 }

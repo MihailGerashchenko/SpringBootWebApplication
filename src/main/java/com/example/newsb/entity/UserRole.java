@@ -1,10 +1,17 @@
 package com.example.newsb.entity;
 
 public enum UserRole {
-    ADMIN, STUDENT;
+    ADMIN("messages.admin"),
+    STUDENT("messages.student");
 
-    UserRole() {
+    final private String messageId;
 
+    UserRole(String messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getMessageId() {
+        return messageId;
     }
 
     @Override

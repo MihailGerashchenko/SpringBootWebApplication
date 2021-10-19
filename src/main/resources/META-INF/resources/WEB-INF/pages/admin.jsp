@@ -5,7 +5,7 @@
 <html>
 <head>
     <title><spring:message code="label.title" /></title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -14,18 +14,7 @@
 <body>
 <div class="container">
     <h1><spring:message code="messages.adminpage" /></h1>
-
-<%--    <table border="1">--%>
-<%--        <c:forEach items="${users}" var="user">--%>
-<%--            <tr>--%>
-<%--                <td><input type="checkbox" name="toDelete" value="${user.id}" id="check_${user.id}"></td>--%>
-<%--                <td><c:out value="${user.login}"/></td>--%>
-<%--                <td><c:out value="${user.role}"/></td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--    </table>--%>
 </div>
-
 
 <table class="table table-hover">
     <thead>
@@ -36,7 +25,6 @@
     </tr>
     </thead>
     <tbody>
-<%--    <td><input type="checkbox" name="toDelete" value="${user.id}" id="check_${user.id}"></td>--%>
     <c:forEach items="${users}" var="user">
                <tr>
                    <th scope="row"><input type="checkbox" name="toDelete" value="${user.id}" id="check_${user.id}"></th>
@@ -55,20 +43,7 @@
 <p><a type="submit" class="btn btn-primary" href="/"><spring:message code="messages.turnback" /></a></p>
 <c:url value="/logout" var="logoutUrl" />
 <p><a type="submit" class="btn btn-primary" a href="${logoutUrl}"><spring:message code="messages.logoutbutton" /></a></p>
-<p><a href="/createtest"><input class="btn btn-primary" value=<spring:message code="messages.signup" />></a></p>
-
-<%--<c:forEach var="test" items="${tests.content}">--%>
-<%--    <div>--%>
-<%--        Subject <c:out value="${test.subject}"/>--%>
-<%--        Quaestion1: <c:out value="${test.question1}"/>--%>
-<%--        Quaestion2: <c:out value="${test.question2}"/>--%>
-<%--        Quaestion3: <c:out value="${test.question3}"/>--%>
-<%--        Mark: <c:out value="${test.studentMark.toString()}"/>--%>
-<%--        Customer: <c:out value="${test.customer.getLogin()}"/>--%>
-<%--    </div>--%>
-<%--</c:forEach>--%>
-
-
+<p><a href="/createtest"><input class="btn btn-primary" value=<spring:message code="messages.buttontestcreate" />></a></p>
 
 <script>
     $('#add_user').click(function(){

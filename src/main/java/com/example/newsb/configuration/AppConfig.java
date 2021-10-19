@@ -1,16 +1,10 @@
 package com.example.newsb.configuration;
 
-import com.example.newsb.entity.StudentMark;
-import com.example.newsb.entity.UserRole;
-import com.example.newsb.service.TestService;
-import com.example.newsb.service.UserService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,9 +35,6 @@ public class AppConfig extends GlobalMethodSecurityConfiguration implements WebM
     @Bean(name = "messageSource")
     public MessageSource getMessageResource() {
         ReloadableResourceBundleMessageSource messageResource = new ReloadableResourceBundleMessageSource();
-
-        // Read i18n/messages_xxx.properties file.
-        // For example: i18n/messages_en.properties
         messageResource.setBasename("classpath:/messages");
         messageResource.setDefaultEncoding("UTF-8");
         return messageResource;

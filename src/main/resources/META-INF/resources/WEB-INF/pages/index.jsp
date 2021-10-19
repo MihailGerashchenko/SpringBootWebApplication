@@ -24,10 +24,10 @@
 
     <c:url value="/update" var="updateUrl"/>
     <form action="${updateUrl}" method="POST">
-        <input class="form-control form-group" type="text" name="email" value="${email}" placeholder="Email">
-        <input class="form-control form-group" type="text" name="phone" value="${phone}" placeholder="Phone">
-        <input class="form-control form-group" type="text" name="address" value="${address}" placeholder="Address">
-        <input type="submit" class="btn btn-primary" value="Update">
+        <input class="form-control form-group" type="text" name="email" value="${email}" placeholder=<spring:message code="messages.addemail" />>
+        <input class="form-control form-group" type="text" name="phone" value="${phone}" placeholder=<spring:message code="messages.addphone" />>
+        <input class="form-control form-group" type="text" name="address" value="${address}" placeholder=<spring:message code="messages.addaddress" />>
+        <input type="submit" class="btn btn-primary" value=<spring:message code="messages.update" />>
     </form>
     <c:url value="/logout" var="logoutUrl"/>
     <p><a input type="submit" class="btn btn-primary" href="${logoutUrl}"><spring:message code="messages.logoutbutton" /></a></p>
@@ -35,9 +35,11 @@
 <h1><spring:message code="messages.choosetest" /></h1>
 <c:forEach var="test" items="${tests.content}">
     <div class="list-group">
+
+
         <a href="#" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Subject <c:out value="${test.subject}"/></h5>
+                <h5 class="mb-1"><spring:message code="messages.subject" /> <c:out value="${test.subject}"/></h5>
                 <small><spring:message code="messages.testduration" /></small>
             </div>
             <p class="mb-1">
@@ -45,7 +47,7 @@
                 <spring:message code="messages.question2" /> <c:out value="${test.question2}"/>
                 <spring:message code="messages.question3" /> <c:out value="${test.question3}"/>
                 <spring:message code="messages.time" /> <c:out value="${test.time}"/>
-                <spring:message code="messages.mark" /> <c:out value="${test.studentMark.toString()}"/>
+                <spring:message code="messages.degree" /> <c:out value="${test.degree.toString()}"/>
                 <spring:message code="messages.customer" /> <c:out value="${test.customer.getLogin()}"/></p>
             <small><spring:message code="messages.testrequirements" /></small>
         </a>

@@ -1,14 +1,12 @@
 package com.example.newsb.configuration;
 
 import com.example.newsb.entity.Customer;
-import com.example.newsb.entity.StudentMark;
+import com.example.newsb.entity.Degree;
 import com.example.newsb.entity.UserRole;
 import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 
 @Component
@@ -35,16 +33,19 @@ public class FulfillData {
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
 
-        testService.addTest("Algebra test №", "Sequences", "Trigonometry",
-                "Equalities", "25 minutes", StudentMark.UPCOMING, customer);
+//        testService.addTest("Algebra", "Explaine sequences", " Explaine trigonometry",
+//                "Explaine equalities", "40:00", Degree.A, customer);
 
-        testService.addTestWithoutCustomer("Phisic test №", "Conservation of Energy", "Dynamics",
-                "Kinematics", "40 minutes", StudentMark.UPCOMING);
+        testService.addTestWithoutCustomer("Phisic", "Explaine conservation of energy", "Explaine dynamics",
+                "Explaine kinematics", "40:00", Degree.A);
 
-        testService.addTestWithoutCustomer("Chemistry test №", "Periodic Table", "Electrochemistry",
-                "Thermochemistry", "35 minutes", StudentMark.UPCOMING);
+        testService.addTestWithoutCustomer("Chemistry", "Name each element from periodic table", "Explaine electrochemistry",
+                "Explaine thermochemistry", "35:00", Degree.B);
 
-        testService.addTestWithoutCustomer("Poetry test №", "Nikolay Gumilyov", "Bulat Okudzhava",
-                "Anna Akhmatova", "30 minutes", StudentMark.UPCOMING);
+        testService.addTestWithoutCustomer("Poetry", "Nikolay Gumilyov", "Bulat Okudzhava",
+                "Anna Akhmatova", "30:00", Degree.B);
+
+        testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
+                "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);
     }
 }
