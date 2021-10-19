@@ -5,6 +5,7 @@ import com.example.newsb.entity.Degree;
 import com.example.newsb.entity.UserRole;
 import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ public class FulfillData {
     private final TestService testService;
     private final PasswordEncoder encoder;
 
+    @Autowired
     public FulfillData(UserService userService, TestService testService, PasswordEncoder encoder) {
         this.userService = userService;
         this.testService = testService;
@@ -33,8 +35,8 @@ public class FulfillData {
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
 
-//        testService.addTest("Algebra", "Explaine sequences", " Explaine trigonometry",
-//                "Explaine equalities", "40:00", Degree.A, customer);
+        testService.addTest("Algebra", "Explaine sequences", " Explaine trigonometry",
+                "Explaine equalities", "40:00", Degree.A, customer);
 
         testService.addTestWithoutCustomer("Phisic", "Explaine conservation of energy", "Explaine dynamics",
                 "Explaine kinematics", "40:00", Degree.A);

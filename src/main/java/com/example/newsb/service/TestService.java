@@ -44,21 +44,6 @@ public class TestService {
         return testRepository.findAll(pageable);
     }
 
-//    @Transactional
-//    public void updateTest(String subject, String question1, String question2,
-//                           String question3, String time, Degree degree) {
-//        Test test = testRepository.findBySubject(subject);
-//        if (test == null)
-//            return;
-//        test.setSubject(subject);
-//        test.setQuestion1(question1);
-//        test.setQuestion2(question2);
-//        test.setQuestion3(question3);
-//        test.setTime(time);
-//        test.setDegree(degree);
-//        testRepository.save(test);
-//    }
-
     @Transactional
     public ArrayList<Test> findTestByID(long id){
         Optional<Test> tests = testRepository.findById(id);
@@ -70,6 +55,14 @@ public class TestService {
     @Transactional
     public List<Test> findAllTests(){
         return testRepository.findAll();
+    }
 
+    @Transactional
+    public List<Test> findWithSubject(String subject){
+        return testRepository.findBySubject(subject);
+    }
+    @Transactional
+    public List<Test> findWithDegree(String degree){
+        return testRepository.findByDegree(degree);
     }
 }

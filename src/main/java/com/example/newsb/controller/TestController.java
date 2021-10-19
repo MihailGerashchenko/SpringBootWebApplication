@@ -43,22 +43,64 @@ public class TestController {
         return "redirect:/";
     }
 
-    @GetMapping("/test")
-    public String testID( long id, Model model){
-        ArrayList<Test> list = testService.findTestByID(id);
-        model.addAttribute("tests", list);
-        return "bundle";
-    }
-
-    @GetMapping("/test1")
-    public String testAll(Model model){
-        List<Test> list = testService.findAllTests();
-        model.addAttribute("tests", list);
-        for (Test test : list) {
-            System.out.println("OOOOOOOOOPPPPPPPPPPPPPPPPPP"+test);
+    @PostMapping("filter")
+    public String filterSubject(@RequestParam(required = false) String filter,
+                         Model model) {
+        Iterable<Test> tests;
+        if(filter !=null && !filter.isEmpty()){
+            tests = testService.findWithSubject(filter);
+        } else {
+            tests = testService.findAllTests();
         }
-        return "bundle";
+
+        model.addAttribute("tests", tests);
+        return "index";
     }
+//    @PostMapping("filter")
+//    public String filterDegree(@RequestParam(required = false) String degree,
+//                         Model model) {
+//        Iterable<Test> tests;
+//        if(degree !=null && !degree.isEmpty()){
+//            tests = testService.findWithDegree(degree);
+//        } else {
+//            tests = testService.findAllTests();
+//        }
+//
+//        model.addAttribute("tests", tests);
+//        return "index";
+//    }
+
+
+//    @PostMapping("degree")
+//    public String degree(@RequestParam(required = false) String degree,
+//                         Model model) {
+//        Iterable<Test> tests;
+//        if(degree !=null && !degree.isEmpty()){
+//            tests = testService.findTag(degree);
+//        } else {
+//            tests = testService.findAllTests();
+//        }
+//
+//        model.addAttribute("tests", tests);
+//        return "index";
+//    }
+
+//    @GetMapping("/iii)
+//    public String testIDD(Model model){
+//        List<Test> list = testService.findAllTests();
+//        model.addAttribute("tests", list);
+//        return "bundle";
+//    }
+
+//    @GetMapping("/test1")
+//    public String testAll(Model model){
+//        List<Test> list = testService.findAllTests();
+//        model.addAttribute("tests", list);
+//        for (Test test : list) {
+//            System.out.println("OOOOOOOOOPPPPPPPPPPPPPPPPPP"+test);
+//        }
+//        return "bundle";
+//    }
 
 //    @PostMapping(value = "/updatetest")
 //    public String updateTest(@Valid

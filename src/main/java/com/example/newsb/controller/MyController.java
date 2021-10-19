@@ -38,7 +38,7 @@ public class MyController {
 
 
     @GetMapping("/")
-    public String index(Model model, Pageable pageable) {
+    public String index(Model model) {
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -50,11 +50,13 @@ public class MyController {
         model.addAttribute("phone", dbUser.getPhone());
         model.addAttribute("address", dbUser.getAddress());
 
-        Page<Test> tests = testService.getAllTestsPageable(pageable);
-        model.addAttribute("tests", tests);
+//        Page<Test> tests = testService.getAllTestsPageable(pageable);
+//        model.addAttribute("tests", tests);
 //
 //        ArrayList<Test> list = testService.findTestByID(id);
 //        model.addAttribute("tests", list);
+        List<Test> list = testService.findAllTests();
+        model.addAttribute("tests", list);
 
         return "index";
     }
