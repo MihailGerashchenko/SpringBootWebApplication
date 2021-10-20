@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,6 +7,9 @@
     <title><spring:message code="label.title"/></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -115,16 +117,55 @@
 <%--    </div>--%>
 <%--</nav>--%>
 
+<%--<nav aria-label="Page navigation">--%>
+<%--    <ul class="pagination">--%>
+<%--        <c:forEach var="i" begin="1" end="${pages}">--%>
+<%--            <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
+<%--        </c:forEach>--%>
+<%--    </ul>--%>
+<%--</nav>--%>
+
+<%--<nav aria-label="Page navigation example">--%>
+<%--    <ul class="pagination">--%>
+<%--        <li class="page-item">--%>
+<%--            <a class="page-link" href="#" aria-label="Previous">--%>
+<%--                <span aria-hidden="true">&laquo;</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
+<%--        <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
+<%--        <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+<%--        <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+<%--        <li class="page-item">--%>
+<%--            <a class="page-link" href="#" aria-label="Next">--%>
+<%--                <span aria-hidden="true">&raquo;</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
+<%--    </ul>--%>
+<%--</nav>--%>
+
+
+
+<div align="center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <c:forEach var="i" begin="1" end="${pages}">
+                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+            </c:forEach>
+        </ul>
+    </nav>
+</div>
+
 
 <div class="container-fluid" style="margin: 3px auto">
+
     <div class="container">
         <div style="height: auto; margin:auto 3%;text-align:center">
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand">Search by subject</a>
+                    <a class="navbar-brand"><spring:message code="messages.searchbysubject"/></a>
                     <form method="post" action="filter" class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="filter">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="submit"><spring:message code="messages.buttonsearch"/></button>
                     </form>
                 </div>
             </nav>
@@ -149,7 +190,7 @@
                 <c:forEach var="test" items="${tests}">
                     <tr>
                         <td><c:out value="${test.subject}"/></td>
-                        <td><c:out value="${test.question1}"/>td>
+                        <td><c:out value="${test.question1}"/></td>
                         <td><c:out value="${test.question2}"/></td>
                         <td><c:out value="${test.question3}"/></td>
                         <td><c:out value="${test.time}"/></td>
@@ -158,15 +199,15 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+<%--    <nav aria-label="Page navigation example">--%>
+<%--        <ul class="pagination">--%>
+<%--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--%>
+<%--            <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
+<%--            <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+<%--            <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+<%--            <li class="page-item"><a class="page-link" href="#">Next</a></li>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
             </table>
         </div>
     </div>

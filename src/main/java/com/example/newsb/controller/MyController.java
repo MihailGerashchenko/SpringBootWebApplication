@@ -7,6 +7,8 @@ import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,10 +16,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -38,7 +37,8 @@ public class MyController {
 
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @PageableDefault(sort ={"id"}, direction = Sort.Direction.DESC)
+                        Pageable pageable) {
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -50,14 +50,32 @@ public class MyController {
         model.addAttribute("phone", dbUser.getPhone());
         model.addAttribute("address", dbUser.getAddress());
 
+//        long pageCount = 6;
 //        Page<Test> tests = testService.getAllTestsPageable(pageable);
 //        model.addAttribute("tests", tests);
 //
 //        ArrayList<Test> list = testService.findTestByID(id);
 //        model.addAttribute("tests", list);
+
+
         List<Test> list = testService.findAllTests();
         model.addAttribute("tests", list);
+//        model.addAttribute("pages", pageCount);
 
+//        return findPagenated(1, model);
+      return "index";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPagenated(@PathVariable(value = "pageNo") int pageNo,
+                                Model model){
+        int pageSize = 5;
+        Page<Test> page = testService.findPagenated(pageNo, pageSize);
+        List<Test> listTests = page.getContent();
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listTests", listTests);
         return "index";
     }
 

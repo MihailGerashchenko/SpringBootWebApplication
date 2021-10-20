@@ -5,6 +5,7 @@ import com.example.newsb.entity.Degree;
 import com.example.newsb.entity.Test;
 import com.example.newsb.repository.TestRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,8 +62,19 @@ public class TestService {
     public List<Test> findWithSubject(String subject){
         return testRepository.findBySubject(subject);
     }
+
     @Transactional
-    public List<Test> findWithDegree(String degree){
-        return testRepository.findByDegree(degree);
+    public Page<Test> findAllPage(Pageable pageable){
+        return testRepository.findAll(pageable);
+    }
+    @Transactional
+    public Page<Test> findSubjectPage(String subject, Pageable pageable){
+        return testRepository.findBySubject(subject, pageable);
+    }
+
+    @Transactional
+    public Page<Test> findPagenated(int pageNo, int pageSize){
+        Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+        return testRepository.findAll(pageable);
     }
 }
