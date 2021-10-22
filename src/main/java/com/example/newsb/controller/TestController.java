@@ -31,7 +31,7 @@ public class TestController {
                              @RequestParam(required = false) String question2,
                              @RequestParam(required = false) String question3,
                              @RequestParam(required = false) String time,
-                             @RequestParam(required = false) Degree degree) throws ApiRequestException {
+                             @RequestParam(required = false) Degree degree) {
 //        throw new ;
 
         testService.addTestWithoutCustomer(subject, question1, question2, question3, time, degree);
@@ -56,20 +56,20 @@ public class TestController {
 //        return "index";
 //    }
 
-    @PostMapping("filter")
-    public String filterSubject(@RequestParam(required = false) String filter,
-                         Model model) {
-        Iterable<Test> tests;
-        if(filter !=null && !filter.isEmpty()){
-            tests = testService.findWithSubject(filter);
-        } else {
-            tests = testService.findAllTests();
-        }
-
-
-        model.addAttribute("tests", tests);
-        return "index";
-    }
+//    @PostMapping("filter")
+//    public String filterSubject(@RequestParam(required = false) String filter,
+//                         Model model) {
+//        Iterable<Test> tests;
+//        if(filter !=null && !filter.isEmpty()){
+//            tests = testService.findWithSubject(filter);
+//        } else {
+//            tests = testService.findAllTests();
+//        }
+//
+//
+//        model.addAttribute("tests", tests);
+//        return "index";
+//    }
 //    @PostMapping("filter")
 //    public String filterDegree(@RequestParam(required = false) String degree,
 //                         Model model) {

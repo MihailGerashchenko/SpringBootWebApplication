@@ -19,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,8 +36,7 @@ public class MyController {
 
 
     @GetMapping("/")
-    public String index(Model model, @PageableDefault(sort ={"id"}, direction = Sort.Direction.DESC)
-                        Pageable pageable) {
+    public String index(Model model, @RequestParam(required = false) String filter) {
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -50,32 +48,18 @@ public class MyController {
         model.addAttribute("phone", dbUser.getPhone());
         model.addAttribute("address", dbUser.getAddress());
 
-//        long pageCount = 6;
-//        Page<Test> tests = testService.getAllTestsPageable(pageable);
-//        model.addAttribute("tests", tests);
-//
-//        ArrayList<Test> list = testService.findTestByID(id);
-//        model.addAttribute("tests", list);
-
-
+        Iterable<Test> tests;
+        if (filter != null && !filter.isEmpty()) {
+            tests = testService.findWithSubject(filter);
+        } else {
+            tests = testService.findAllTests();
+        }
         List<Test> list = testService.findAllTests();
-        model.addAttribute("tests", list);
-//        model.addAttribute("pages", pageCount);
 
-//        return findPagenated(1, model);
-      return "index";
-    }
+        model.addAttribute("list", list);
+        model.addAttribute("tests", tests);
 
-    @GetMapping("/page/{pageNo}")
-    public String findPagenated(@PathVariable(value = "pageNo") int pageNo,
-                                Model model){
-        int pageSize = 5;
-        Page<Test> page = testService.findPagenated(pageNo, pageSize);
-        List<Test> listTests = page.getContent();
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("listTests", listTests);
+
         return "index";
     }
 

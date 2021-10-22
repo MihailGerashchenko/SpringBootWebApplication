@@ -40,121 +40,15 @@
             code="messages.logoutbutton"/></a></p>
 </div>
 
-
-<%--&lt;%&ndash;<div class="list-group">&ndash;%&gt;--%>
-<%--&lt;%&ndash;    <a href="#" class="list-group-item list-group-item-action">&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <div class="d-flex w-100 justify-content-between">&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <h5 class="mb-1"><spring:message code="messages.subject" /> <c:out value="${test.subject}"/></h5>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <small><spring:message code="messages.testduration" /></small>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        </div>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <p class="mb-1">&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.question1" /> <c:out value="${test.question1}"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.question2" /> <c:out value="${test.question2}"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.question3" /> <c:out value="${test.question3}"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.time" /> <c:out value="${test.time}"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.degree" /> <c:out value="${test.degree.toString()}"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <spring:message code="messages.customer" /> <c:out value="${test.customer.getLogin()}"/></p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <small><spring:message code="messages.testrequirements" /></small>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-<%--<h1><spring:message code="messages.choosetest" /></h1>--%>
-<%--<table class="table">--%>
-<%--&lt;%&ndash;    <thead>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    <c:forEach var="test" items="${tests}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;&lt;%&ndash;            <th scope="row">${test.getId}</th>&ndash;%&gt;&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.subject" /> <c:out value="${test.subject}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <small><spring:message code="messages.testduration" /></small>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.question1}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.question2}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.question3}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.time}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.degree.toString()}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <td><spring:message code="messages.question1" /> <c:out value="${test.customer.getLogin()}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        </tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </c:forEach>&ndash;%&gt;--%>
-<%--    </thead>--%>
-<%--&lt;%&ndash;    <tbody>&ndash;%&gt;--%>
-<%--    --%>
-
-
-<%--&lt;%&ndash;    <tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <th scope="row">${test.getId}</th>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.subject" /> <c:out value="${test.subject}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <small><spring:message code="messages.testduration" /></small>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.question1}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.question2}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.question3}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.time}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.degree.toString()}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td><spring:message code="messages.question1" /> <c:out value="${test.customer.getLogin()}"/></td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    <tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <th scope="row">2</th>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td>Jacob</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td>Thornton</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td>@fat</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    <tr>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <th scope="row">3</th>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td colspan="2">Larry the Bird</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <td>@twitter</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </tr>&ndash;%&gt;--%>
-<%--    </tbody>--%>
-<%--</table>--%>
-<%--<form method="post" action="filter">--%>
-<%--<input type="text" name="filter">--%>
-<%--    <button type="submit">Filter subject</button>--%>
-<%--</form>--%>
-<%--<nav class="navbar navbar-light bg-light">--%>
-<%--    <div class="container-fluid">--%>
-<%--        <a class="navbar-brand">Search by subject</a>--%>
-<%--        <form method="post" action="filter" class="d-flex">--%>
-<%--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="filter">--%>
-<%--            <button class="btn btn-outline-success" type="submit">Search</button>--%>
-<%--        </form>--%>
-<%--    </div>--%>
-<%--</nav>--%>
-
-<%--<nav aria-label="Page navigation">--%>
-<%--    <ul class="pagination">--%>
-<%--        <c:forEach var="i" begin="1" end="${pages}">--%>
-<%--            <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
-<%--        </c:forEach>--%>
-<%--    </ul>--%>
-<%--</nav>--%>
-
-<%--<nav aria-label="Page navigation example">--%>
-<%--    <ul class="pagination">--%>
-<%--        <li class="page-item">--%>
-<%--            <a class="page-link" href="#" aria-label="Previous">--%>
-<%--                <span aria-hidden="true">&laquo;</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-<%--        <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-<%--        <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-<%--        <li class="page-item">--%>
-<%--            <a class="page-link" href="#" aria-label="Next">--%>
-<%--                <span aria-hidden="true">&raquo;</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
-<%--</nav>--%>
-
-
-
-<div align="center">
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <c:forEach var="i" begin="1" end="${pages}">
-                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-            </c:forEach>
-        </ul>
-    </nav>
-</div>
-
+<%--<div align="center">--%>
+<%--    <nav aria-label="Page navigation">--%>
+<%--        <ul class="pagination">--%>
+<%--            <c:forEach var="i" begin="1" end="${pages}">--%>
+<%--                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
+<%--            </c:forEach>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+<%--</div>--%>
 
 <div class="container-fluid" style="margin: 3px auto">
 
@@ -163,8 +57,8 @@
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand"><spring:message code="messages.searchbysubject"/></a>
-                    <form method="post" action="filter" class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="filter">
+                    <form method="get" action="/" class="d-flex">
+                        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="filter" value="${filter}">
                         <button class="btn btn-outline-success" type="submit"><spring:message code="messages.buttonsearch"/></button>
                     </form>
                 </div>
