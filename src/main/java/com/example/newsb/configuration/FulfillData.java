@@ -8,6 +8,7 @@ import com.example.newsb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 
 @Component
@@ -23,14 +24,20 @@ public class FulfillData {
         this.encoder = encoder;
     }
 
-    public static final String ADMINISTRATOR = "admin";
-    public static final String STUDENT = "student";
+    public static final String ADMINISTRATOR = "Oleg Senin";
+    public static final String STUDENT = "Samuil Marshak";
 
     @PostConstruct
     public void fulfillData() {
         userService.addUser(ADMINISTRATOR,
                 encoder.encode("password"),
                 UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
+
+        for (int i = 0; i < 15; i++) {
+            Customer customer = userService.addUserWithTest(STUDENT,
+                    encoder.encode("password"),
+                    UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+        }
         Customer customer = userService.addUserWithTest(STUDENT,
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");

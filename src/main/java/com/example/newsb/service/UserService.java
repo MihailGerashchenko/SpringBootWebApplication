@@ -3,6 +3,7 @@ package com.example.newsb.service;
 import com.example.newsb.configuration.AppConfig;
 import com.example.newsb.configuration.FulfillData;
 import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.Test;
 import com.example.newsb.repository.UserRepository;
 import com.example.newsb.entity.UserRole;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,11 @@ public class UserService {
         user.setAddress(address);
 
         userRepository.save(user);
+    }
+
+    @Transactional
+    public List<Customer> listCustomers(){
+        return userRepository.findAll();
     }
 }
 

@@ -18,6 +18,10 @@ public interface TestRepository extends JpaRepository<Test, Long> {
 
     Page<Test> findAll(Pageable pageable);
 
+    //
+
+//    List<Test> listTests(Customer customer, int start, int coun);
+
 //    List<Test> listContacts(Customer customer, int start, int count);
 
 //    @Query("SELECT COUNT(c) FROM Test c")

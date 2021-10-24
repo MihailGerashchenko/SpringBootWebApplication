@@ -7,8 +7,6 @@ import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +25,7 @@ public class MyController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final TestService testService;
+    private static final int ITEMS_PER_PAGE = 6;
 
     public MyController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
         this.userService = userService;
@@ -36,7 +35,7 @@ public class MyController {
 
 
     @GetMapping("/")
-    public String index(Model model, @RequestParam(required = false) String filter) {
+    public String index(Model model, @RequestParam(required = false) String filter, Pageable pageable) {
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -54,7 +53,15 @@ public class MyController {
         } else {
             tests = testService.findAllTests();
         }
-        List<Test> list = testService.findAllTests();
+        Page<Test> list = testService.findAll(pageable);
+
+
+//        Page<Test> pages=dao.getPage(pageable);
+//        m.addAttribute("number", pages.getNumber());
+//        m.addAttribute("totalPages", pages.getTotalPages());
+//        m.addAttribute("totalElements", pages.getTotalElements());
+//        m.addAttribute("size", pages.getSize());
+//        m.addAttribute("data",pages.getContent());
 
         model.addAttribute("list", list);
         model.addAttribute("tests", tests);
@@ -113,8 +120,17 @@ public class MyController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')") // !!!
-    public String admin(Model model) {
+    public String admin(Model model, @RequestParam(required = false, defaultValue = "0") Integer page) {
+        if (page < 0) page = 0;
+
+        long totalCount = testService.count();
+        int start = page * ITEMS_PER_PAGE;
+        long pageCount = (totalCount / ITEMS_PER_PAGE) +
+                ((totalCount % ITEMS_PER_PAGE > 0) ? 1 : 0);
+
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("pages", pageCount);
+
         return "admin";
     }
 

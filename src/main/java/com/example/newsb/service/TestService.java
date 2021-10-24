@@ -59,6 +59,11 @@ public class TestService {
     }
 
     @Transactional
+    public Page<Test> findAll(Pageable pageable){
+        return testRepository.findAll(pageable);
+    }
+
+    @Transactional
     public List<Test> findWithSubject(String subject){
         return testRepository.findBySubject(subject);
     }
@@ -67,6 +72,7 @@ public class TestService {
     public Page<Test> findAllPage(Pageable pageable){
         return testRepository.findAll(pageable);
     }
+
     @Transactional
     public Page<Test> findSubjectPage(String subject, Pageable pageable){
         return testRepository.findBySubject(subject, pageable);
@@ -77,4 +83,15 @@ public class TestService {
         Pageable pageable = PageRequest.of(pageNo -1, pageSize);
         return testRepository.findAll(pageable);
     }
+    @Transactional
+    public Long count(){
+        return testRepository.count();
+    }
+
+    //
+//    @Transactional
+//    public List<Test> listTests(Customer customer, int start, int coun){
+//        return testRepository.listTests(customer, start, coun);
+//    }
+//    List<Test> listTests(Customer customer, int start, int count);
 }
