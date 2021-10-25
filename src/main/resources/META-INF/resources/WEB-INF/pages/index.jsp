@@ -65,7 +65,15 @@
                                 code="messages.buttonsearch"/></button>
                     </form>
                 </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <c:forEach var="i" begin="1" end="${list.getTotalPages()}">
+                            <li><a href="/?page=<c:out value="${i - 1}"/>&size=${itemPerPage}"><c:out value="${i}"/></a></li>
+                        </c:forEach>
+                    </ul>
+                </nav>
             </nav>
+
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
@@ -79,7 +87,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="test" items="${tests}">
+                <c:forEach var="test" items="${tests.content}">
                     <tr>
                         <td><c:out value="${test.subject}"/></td>
                         <td><c:out value="${test.question1}"/></td>

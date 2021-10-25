@@ -7,6 +7,7 @@ import com.example.newsb.service.TestService;
 import com.example.newsb.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +26,7 @@ public class MyController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final TestService testService;
-    private static final int ITEMS_PER_PAGE = 6;
+    private static final int ITEMS_PER_PAGE = 5;
 
     public MyController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
         this.userService = userService;
@@ -33,9 +34,9 @@ public class MyController {
         this.testService = testService;
     }
 
-
     @GetMapping("/")
-    public String index(Model model, @RequestParam(required = false) String filter, Pageable pageable) {
+    public String index(Model model, @RequestParam(required = false) String filter, @PageableDefault(page = 0, size = ITEMS_PER_PAGE)
+            Pageable pageable) {
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -47,22 +48,15 @@ public class MyController {
         model.addAttribute("phone", dbUser.getPhone());
         model.addAttribute("address", dbUser.getAddress());
 
-        Iterable<Test> tests;
+        Page<Test> tests;
         if (filter != null && !filter.isEmpty()) {
-            tests = testService.findWithSubject(filter);
+            tests = testService.findSubjectPage(filter, pageable);
         } else {
-            tests = testService.findAllTests();
+            tests = testService.findAllPage(pageable);
         }
         Page<Test> list = testService.findAll(pageable);
 
-
-//        Page<Test> pages=dao.getPage(pageable);
-//        m.addAttribute("number", pages.getNumber());
-//        m.addAttribute("totalPages", pages.getTotalPages());
-//        m.addAttribute("totalElements", pages.getTotalElements());
-//        m.addAttribute("size", pages.getSize());
-//        m.addAttribute("data",pages.getContent());
-
+        model.addAttribute("itemPerPage", ITEMS_PER_PAGE);
         model.addAttribute("list", list);
         model.addAttribute("tests", tests);
 
@@ -79,7 +73,6 @@ public class MyController {
         userService.updateUser(login, email, phone, address);
         return "redirect:/";
     }
-
 
     @PostMapping(value = "/newuser")
     public String update(@Valid
@@ -98,13 +91,11 @@ public class MyController {
         return "redirect:/";
     }
 
-
     @PostMapping(value = "/delete")
     public String delete(@RequestParam(name = "toDelete[]", required = false) List<Long> ids, Model model) {
         userService.deleteUsers(ids);
         return "admin";
     }
-
 
     @GetMapping("/login")
     public String loginPage() {
@@ -117,19 +108,14 @@ public class MyController {
         return "register";
     }
 
-
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')") // !!!
-    public String admin(Model model, @RequestParam(required = false, defaultValue = "0") Integer page) {
-        if (page < 0) page = 0;
+    public String admin(Model model, @PageableDefault(page = 0, size = ITEMS_PER_PAGE) Pageable pageable) {
 
-        long totalCount = testService.count();
-        int start = page * ITEMS_PER_PAGE;
-        long pageCount = (totalCount / ITEMS_PER_PAGE) +
-                ((totalCount % ITEMS_PER_PAGE > 0) ? 1 : 0);
+        Page<Customer> list = userService.findAll(pageable);
 
-        model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("pages", pageCount);
+        model.addAttribute("users", list);
+        model.addAttribute("itemPerPage", ITEMS_PER_PAGE);
 
         return "admin";
     }

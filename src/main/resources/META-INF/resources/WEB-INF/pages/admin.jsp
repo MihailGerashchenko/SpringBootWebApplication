@@ -25,13 +25,11 @@
 </div>
 
 <div class="container-fluid" style="margin: 3px auto">
-
-
     <div class="container">
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <c:forEach var="i" begin="1" end="${pages}">
-                    <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                <c:forEach var="i" begin="1" end="${users.getTotalPages()}">
+                    <li><a href="/admin?page=<c:out value="${i - 1}"/>&size=${itemPerPage}"><c:out value="${i}"/></a></li>
                 </c:forEach>
             </ul>
         </nav>
@@ -50,7 +48,7 @@
                 </thead>
                 <tbody>
 
-                <c:forEach items="${users}" var="user">
+                <c:forEach items="${users.content}" var="user">
                     <tr>
                         <th scope="row"><input type="checkbox" name="toDelete" value="${user.id}" id="check_${user.id}">
                         </th>

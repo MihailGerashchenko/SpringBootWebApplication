@@ -1,11 +1,11 @@
 package com.example.newsb.service;
 
-import com.example.newsb.configuration.AppConfig;
 import com.example.newsb.configuration.FulfillData;
 import com.example.newsb.entity.Customer;
-import com.example.newsb.entity.Test;
 import com.example.newsb.repository.UserRepository;
 import com.example.newsb.entity.UserRole;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +35,7 @@ public class UserService {
         ids.forEach(id -> {
             Optional<Customer> user = userRepository.findById(id);
             user.ifPresent(u -> {
-                if ( ! FulfillData.ADMINISTRATOR.equals(u.getLogin())) {
+                if (!FulfillData.ADMINISTRATOR.equals(u.getLogin())) {
                     userRepository.deleteById(u.getId());
                 }
             });
@@ -58,9 +58,9 @@ public class UserService {
 
     @Transactional
     public Customer addUserWithTest(String login, String passHash,
-                           UserRole role, String email,
-                           String phone,
-                           String address) {
+                                    UserRole role, String email,
+                                    String phone,
+                                    String address) {
 
         Customer custumer = new Customer(login, passHash, role, email, phone, address);
         userRepository.save(custumer);
@@ -80,9 +80,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+
     @Transactional
-    public List<Customer> listCustomers(){
-        return userRepository.findAll();
+    public Page<Customer> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }
 

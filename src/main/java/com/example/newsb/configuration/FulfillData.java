@@ -24,7 +24,7 @@ public class FulfillData {
         this.encoder = encoder;
     }
 
-    public static final String ADMINISTRATOR = "Oleg Senin";
+    public static final String ADMINISTRATOR = "Taras Bulba";
     public static final String STUDENT = "Samuil Marshak";
 
     @PostConstruct
@@ -33,17 +33,45 @@ public class FulfillData {
                 encoder.encode("password"),
                 UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
 
-        for (int i = 0; i < 15; i++) {
-            Customer customer = userService.addUserWithTest(STUDENT,
-                    encoder.encode("password"),
-                    UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
-        }
-        Customer customer = userService.addUserWithTest(STUDENT,
+        Customer customer1 = userService.addUserWithTest(STUDENT,
                 encoder.encode("password"),
                 UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
 
+        Customer customer2 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer3 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer4 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer5 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer6 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer7 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer8 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+        Customer customer9 = userService.addUserWithTest(STUDENT,
+                encoder.encode("password"),
+                UserRole.STUDENT, "student@gmail.com", "+380940112364", "Kiev");
+
+
         testService.addTest("Algebra", "Explaine sequences", " Explaine trigonometry",
-                "Explaine equalities", "40:00", Degree.A, customer);
+                "Explaine equalities", "40:00", Degree.A, customer1);
 
         testService.addTestWithoutCustomer("Phisic", "Explaine conservation of energy", "Explaine dynamics",
                 "Explaine kinematics", "40:00", Degree.A);
@@ -53,6 +81,18 @@ public class FulfillData {
 
         testService.addTestWithoutCustomer("Poetry", "Nikolay Gumilyov", "Bulat Okudzhava",
                 "Anna Akhmatova", "30:00", Degree.B);
+
+        testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
+                "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);
+
+        testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
+                "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);
+
+        testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
+                "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);
+
+        testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
+                "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);
 
         testService.addTestWithoutCustomer("Literature", "Reveal Gabriel García Márquez autobiography ", "Reveal Bulat Okudzhava autobiography",
                 "Reveal Anna Akhmatova autobiography", "30:00", Degree.B);

@@ -16,20 +16,20 @@ public class Test {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty(message = "You have to input subject")
-    @Size(min = 2, max = 25, message = "subject has to be validated between 2 and 30 characters")
+//    @NotEmpty(message = "You have to input subject")
+//    @Size(min = 2, max = 25, message = "subject has to be validated between 2 and 30 characters")
     private String subject;
 
-    @NotEmpty(message = "You have to input question1")
-    @Size(min = 3, max = 100, message = "question1 has to be validated between 10 and 100 characters")
+//    @NotEmpty(message = "You have to input question1")
+//    @Size(min = 3, max = 100, message = "question1 has to be validated between 10 and 100 characters")
     private String question1;
 
-    @NotEmpty(message = "You have to input question2")
-    @Size(min = 3, max = 100, message = "question2 has to be validated between 10 and 100 characters")
+//    @NotEmpty(message = "You have to input question2")
+//    @Size(min = 3, max = 100, message = "question2 has to be validated between 10 and 100 characters")
     private String question2;
 
-    @NotEmpty(message = "You have to input question3")
-    @Size(min = 3, max = 100, message = "question3 has to be validated between 10 and 100 characters")
+//    @NotEmpty(message = "You have to input question3")
+//    @Size(min = 3, max = 100, message = "question3 has to be validated between 10 and 100 characters")
     private String question3;
 
     @NotEmpty(message = "You have to input time for students at your convinience")
