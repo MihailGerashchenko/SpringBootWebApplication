@@ -21,11 +21,6 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<Customer> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    @Transactional(readOnly = true)
     public Customer findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
@@ -80,10 +75,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-
     @Transactional
     public Page<Customer> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Page<Customer> findByLogin(String login, Pageable pageable) {
+        return userRepository.findByLogin(login, pageable);
     }
 }
 

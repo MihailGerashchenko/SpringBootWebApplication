@@ -1,14 +1,11 @@
 package com.example.newsb.repository;
 
 import com.example.newsb.entity.Customer;
-import com.example.newsb.entity.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface UserRepository extends JpaRepository<Customer, Long> {
 
@@ -17,6 +14,8 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false " +
             "END FROM Customer u WHERE u.login = :login")
     boolean existsByLogin(@Param("login") String login);
+
+    Page<Customer> findByLogin(String subject, Pageable pageable);
 
 
 }

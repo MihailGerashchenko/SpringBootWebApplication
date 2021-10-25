@@ -4,6 +4,7 @@ import com.example.newsb.entity.Degree;
 import com.example.newsb.service.TestService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 
@@ -14,7 +15,6 @@ public class TestController {
     public TestController(TestService testService) {
         this.testService = testService;
     }
-
 
     @GetMapping(value = "/createtest")
     public String createTest() {

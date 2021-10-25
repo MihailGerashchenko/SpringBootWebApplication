@@ -32,7 +32,7 @@ public class Test {
 //    @Size(min = 3, max = 100, message = "question3 has to be validated between 10 and 100 characters")
     private String question3;
 
-    @NotEmpty(message = "You have to input time for students at your convinience")
+//    @NotEmpty(message = "You have to input time for students at your convinience")
     private String time;
 
     @Enumerated(EnumType.STRING)

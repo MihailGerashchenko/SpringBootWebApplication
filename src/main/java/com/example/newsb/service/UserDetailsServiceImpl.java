@@ -1,7 +1,6 @@
 package com.example.newsb.service;
 
 import com.example.newsb.entity.Customer;
-import com.example.newsb.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -30,7 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> roles = Arrays.asList(
                 new SimpleGrantedAuthority(costumer.getRole().toString())
         );
-
         return new User(costumer.getLogin(), costumer.getPassword(), roles);
     }
 }

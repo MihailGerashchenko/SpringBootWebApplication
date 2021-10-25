@@ -22,21 +22,22 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
-public class MyController {
+public class CustomerController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final TestService testService;
     private static final int ITEMS_PER_PAGE = 5;
 
-    public MyController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
+    public CustomerController(UserService userService, PasswordEncoder passwordEncoder, TestService testService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.testService = testService;
     }
 
     @GetMapping("/")
-    public String index(Model model, @RequestParam(required = false) String filter, @PageableDefault(page = 0, size = ITEMS_PER_PAGE)
-            Pageable pageable) {
+    public String index(Model model, @RequestParam(required = false) String filter,
+                        @PageableDefault(page = 0, size = ITEMS_PER_PAGE) Pageable pageable) {
+
         User user = getCurrentUser();
         String login = user.getUsername();
         Customer dbUser = userService.findByLogin(login);
@@ -50,16 +51,16 @@ public class MyController {
 
         Page<Test> tests;
         if (filter != null && !filter.isEmpty()) {
-            tests = testService.findSubjectPage(filter, pageable);
+            tests = testService.findBySubject(filter, pageable);
         } else {
-            tests = testService.findAllPage(pageable);
+            tests = testService.findAll(pageable);
         }
+
         Page<Test> list = testService.findAll(pageable);
 
         model.addAttribute("itemPerPage", ITEMS_PER_PAGE);
         model.addAttribute("list", list);
         model.addAttribute("tests", tests);
-
 
         return "index";
     }
@@ -110,10 +111,19 @@ public class MyController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')") // !!!
-    public String admin(Model model, @PageableDefault(page = 0, size = ITEMS_PER_PAGE) Pageable pageable) {
+    public String admin(Model model, @RequestParam(required = false) String filter,
+                        @PageableDefault(page = 0, size = ITEMS_PER_PAGE) Pageable pageable) {
+
+        Page<Customer> customers;
+        if (filter != null && !filter.isEmpty()) {
+            customers = userService.findByLogin(filter, pageable);
+        } else {
+            customers = userService.findAll(pageable);
+        }
 
         Page<Customer> list = userService.findAll(pageable);
 
+        model.addAttribute("customer", customers);
         model.addAttribute("users", list);
         model.addAttribute("itemPerPage", ITEMS_PER_PAGE);
 

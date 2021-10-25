@@ -41,12 +41,7 @@ public class TestService {
     }
 
     @Transactional
-    public Page<Test> findAllPage(Pageable pageable){
-        return testRepository.findAll(pageable);
-    }
-
-    @Transactional
-    public Page<Test> findSubjectPage(String subject, Pageable pageable){
+    public Page<Test> findBySubject(String subject, Pageable pageable){
         return testRepository.findBySubject(subject, pageable);
     }
 }

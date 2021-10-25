@@ -2,7 +2,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <title><spring:message code="label.title"/></title>
@@ -13,10 +12,7 @@
 </head>
 <body>
 
-<%--<%@include file="pager.jsp" %>--%>
-<%--<jsp:include page="pager.jsp" />--%>
 <div class="container">
-
     <h1><spring:message code="messages.yourlogin"/> ${login}, <spring:message code="messages.role"/></h1>
     <c:forEach var="s" items="${roles}">
         <h3><c:out value="${s}"/></h3>
@@ -24,9 +20,9 @@
 
     <c:if test="${admin}">
         <c:url value="/admin" var="adminUrl"/>
-        <p><a input type="submit" class="btn btn-primary" href="${adminUrl}"><spring:message code="messages.adminpagebutton"/></a></p>
+        <p><a input type="submit" class="btn btn-primary" href="${adminUrl}"><spring:message
+                code="messages.adminpagebutton"/></a></p>
     </c:if>
-
     <c:url value="/update" var="updateUrl"/>
     <form action="${updateUrl}" method="POST">
         <input class="form-control form-group" type="text" name="email" value="${email}" placeholder=<spring:message
@@ -41,17 +37,6 @@
     <p><a input type="submit" class="btn btn-primary" href="${logoutUrl}"><spring:message
             code="messages.logoutbutton"/></a></p>
 </div>
-
-<%--<div align="center">--%>
-<%--    <nav aria-label="Page navigation">--%>
-<%--        <ul class="pagination">--%>
-<%--            <c:forEach var="i" begin="1" end="${pages}">--%>
-<%--                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
-<%--            </c:forEach>--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
-<%--</div>--%>
-
 <div class="container-fluid" style="margin: 3px auto">
     <div class="container">
         <div style="height: auto; margin:auto 3%;text-align:center">
@@ -68,12 +53,12 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <c:forEach var="i" begin="1" end="${list.getTotalPages()}">
-                            <li><a href="/?page=<c:out value="${i - 1}"/>&size=${itemPerPage}"><c:out value="${i}"/></a></li>
+                            <li><a href="/?page=<c:out value="${i - 1}"/>&size=${itemPerPage}"><c:out value="${i}"/></a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </nav>
             </nav>
-
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
