@@ -28,7 +28,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand"><spring:message code="messages.searchbylogin"/></a>
                 <form method="get" action="/admin" class="d-flex">
-                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"
+                    <input class="form-control me-2" type="text" placeholder=<spring:message code="messages.buttonsearch"/> aria-label="Search"
                            name="filter" value="${filter}">
                     <button class="btn btn-outline-success" type="submit"><spring:message
                             code="messages.buttonsearch"/></button>
