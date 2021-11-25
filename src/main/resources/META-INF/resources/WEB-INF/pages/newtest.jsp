@@ -12,18 +12,19 @@
     <c:url value="/createtest" var="regUrl"/>
     <form action="${regUrl}" method="POST">
         <h3><spring:message code="messages.testcreation"/></h3>
-        <input class="form-control form-group" type="text" name="subject" value="${subject}" placeholder=<spring:message
+        <input class="form-control form-group" type="text" name="subject" value="${subject}" required placeholder=
+        <spring:message
                 code="messages.subject"/>>
-        <input class="form-control form-group" type="text" name="question1" placeholder=<spring:message
+        <input class="form-control form-group" type="text" name="question1" required placeholder=<spring:message
                 code="messages.questionone"/>>
-        <input class="form-control form-group" type="text" name="question2" placeholder=<spring:message
+        <input class="form-control form-group" type="text" name="question2" required placeholder=<spring:message
                 code="messages.questiontwo"/>>
-        <input class="form-control form-group" type="text" name="question3" placeholder=<spring:message
+        <input class="form-control form-group" type="text" name="question3" required placeholder=<spring:message
                 code="messages.questionthre"/>>
-        <input class="form-control form-group" type="time" name="time" placeholder=<spring:message
+        <input class="form-control form-group" type="time" name="time" required placeholder=<spring:message
                 code="messages.testtime"/>>
-        <input class="form-control form-group" type="text" name="degree" placeholder=<spring:message
-                code="messages.degree"/>>
+        <input class="form-control form-group" type="text" id="degree" name="degree" aria-describedby="passwordHelp"
+               pattern="[ABCD]" required placeholder="<spring:message code="messages.degree"/>">
         <input type="submit" class="btn btn-primary" value=<spring:message code="messages.buttontestcreate"/>>
     </form>
 </div>

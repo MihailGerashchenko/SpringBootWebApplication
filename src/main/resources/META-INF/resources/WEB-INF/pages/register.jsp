@@ -12,15 +12,24 @@
     <c:url value="/newuser" var="regUrl"/>
     <form action="${regUrl}" method="POST">
         <h3><spring:message code="messages.registration"/></h3>
-        <input class="form-control form-group" type="login" name="login" value="${login}" placeholder=<spring:message
-                code="messages.addlogin"/>>
-        <input class="form-control form-group" type="password" name="password" placeholder=<spring:message
+        <input class="form-control form-group" type="login" name="login" value="${login}" required placeholder=
+        <spring:message code="messages.addlogin"/>>
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            <spring:message code="messages.passwordRequirement"/>
+        </small>
+        <input class="form-control form-group" type="password" name="password" aria-describedby="passwordHelpBlock"
+               required placeholder=<spring:message
                 code="messages.addpassword"/>>
-        <input class="form-control form-group" type="email" name="email" placeholder=<spring:message
+        <input class="form-control form-group" type="email" name="email" required placeholder=<spring:message
                 code="messages.addemail"/>>
-        <input class="form-control form-group" type="phone" name="phone" placeholder=<spring:message
-                code="messages.addphone"/>>
-        <input class="form-control form-group" type="adress" name="address" placeholder=<spring:message
+        <small id="passwordHelp" class="form-text text-muted">
+            <spring:message code="messages.phoneFormat"/>
+        </small>
+        <input class="form-control form-group" type="phone" id="phone" name="phone" required
+               aria-describedby="passwordHelp"
+               pattern="?<=(^|\n)(38)?)(039|067|068|096|097|098|050|066|095|099|063|093)\d{7}(?=\r?\n|$" required
+               placeholder=<spring:message code="messages.addphone"/>>
+        <input class="form-control form-group" type="adress" name="address" required placeholder=<spring:message
                 code="messages.addaddress"/>>
         <input type="submit" class="btn btn-primary" value=<spring:message code="messages.add"/>>
         <c:if test="${exists ne null}">

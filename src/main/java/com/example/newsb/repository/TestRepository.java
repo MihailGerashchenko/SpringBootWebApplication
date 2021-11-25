@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TestRepository extends JpaRepository<Test, Long> {
 
-    Page<Test> findBySubject(String subject, Pageable pageable);
+    Page<Test> findBySubjectOrderBySubjectDesc(String subject, Pageable pageable);
 
     Page<Test> findAll(Pageable pageable);
 

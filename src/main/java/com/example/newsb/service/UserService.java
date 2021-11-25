@@ -82,7 +82,7 @@ public class UserService {
 
     @Transactional
     public Page<Customer> findByLogin(String login, Pageable pageable) {
-        return userRepository.findByLogin(login, pageable);
+        return userRepository.findByLoginOrderByLogin(login, pageable);
     }
 }
 

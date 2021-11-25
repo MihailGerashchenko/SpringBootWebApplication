@@ -74,6 +74,7 @@
                     code="messages.delete"/></button>
             <ul>
             </ul>
+
             <p><a type="submit" class="btn btn-primary" href="/"><spring:message code="messages.turnback"/></a></p>
             <c:url value="/logout" var="logoutUrl"/>
             <p><a type="submit" class="btn btn-primary" a href="${logoutUrl}"><spring:message

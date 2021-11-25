@@ -42,7 +42,7 @@ public class Customer {
     private String phone;
 
 //    @NotEmpty(message = "You have to input your address")
-//    @Size(min = 2, max = 30, message = "address has to be validated between 2 and 30 characters")
+//    @Size(min = 2, max = 30, \message = "address has to be validated between 2 and 30 characters")
     private String address;
 
     public Customer(String login, String password, UserRole role,

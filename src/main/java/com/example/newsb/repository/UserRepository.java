@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
             "END FROM Customer u WHERE u.login = :login")
     boolean existsByLogin(@Param("login") String login);
 
-    Page<Customer> findByLogin(String subject, Pageable pageable);
+    Page<Customer> findByLoginOrderByLogin(String subject, Pageable pageable);
 
 
 }

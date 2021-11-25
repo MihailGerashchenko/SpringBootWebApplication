@@ -23,6 +23,7 @@
         <p><a input type="submit" class="btn btn-primary" href="${adminUrl}"><spring:message
                 code="messages.adminpagebutton"/></a></p>
     </c:if>
+
     <c:url value="/update" var="updateUrl"/>
     <form action="${updateUrl}" method="POST">
         <input class="form-control form-group" type="text" name="email" value="${email}" placeholder=<spring:message
@@ -33,6 +34,7 @@
                 code="messages.addaddress"/>>
         <input type="submit" class="btn btn-primary" value=<spring:message code="messages.update"/>>
     </form>
+
     <c:url value="/logout" var="logoutUrl"/>
     <p><a input type="submit" class="btn btn-primary" href="${logoutUrl}"><spring:message
             code="messages.logoutbutton"/></a></p>

@@ -42,6 +42,6 @@ public class TestService {
 
     @Transactional
     public Page<Test> findBySubject(String subject, Pageable pageable){
-        return testRepository.findBySubject(subject, pageable);
+        return testRepository.findBySubjectOrderBySubjectDesc(subject, pageable);
     }
 }
