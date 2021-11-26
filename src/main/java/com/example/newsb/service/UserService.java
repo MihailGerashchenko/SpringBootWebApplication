@@ -47,7 +47,8 @@ public class UserService {
         if (userRepository.existsByLogin(login))
             return false;
 
-                Customer customer = Customer.builder()
+        Customer customer = Customer
+                .builder()
                 .login(login)
                 .password(passHash)
                 .role(role)
