@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +41,9 @@ public class UserService {
     }
 
     @Transactional
-    public boolean addUser(String login, String passHash,
-                           UserRole role, String email,
-                           String phone,
-                           String address) {
+    public boolean addUser(String login, String passHash, UserRole role,
+                           String email, String phone, String address) {
+
         if (userRepository.existsByLogin(login))
             return false;
 
@@ -58,17 +58,24 @@ public class UserService {
                 .build();
 
         userRepository.save(customer);
-
         return true;
     }
 
     @Transactional
-    public Customer addUserWithTest(String login, String passHash,
-                                    UserRole role, String email,
-                                    String phone,
-                                    String address) {
+    public Customer addUserWithTest(String login, String passHash, UserRole role,
+                                    String email, String phone, String address) {
 
-        Customer customer = new Customer(login, passHash, role, email, phone, address);
+        Customer customer = Customer
+                .builder()
+                .login(login)
+                .password(passHash)
+                .role(role)
+                .email(email)
+                .phone(phone)
+                .address(address)
+                .tests(new ArrayList<>())
+                .build();
+
         userRepository.save(customer);
         return customer;
     }

@@ -26,51 +26,52 @@ public class FulfillData {
 
     public static final String ADMINISTRATOR = "Taras Bulba";
     public static final String STUDENT = "Samuil Marshak";
+    public static final String PASSWORD = "password";
 
     @PostConstruct
     public void fulfillData() {
         userService.addUser(ADMINISTRATOR,
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.ADMIN, "admin@gmail.com", "+380670124978", "Kiev");
 
         Customer customer1 = userService.addUserWithTest(STUDENT,
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student1@gmail.com", "+380940112364", "Kiev");
 
         Customer customer2 = userService.addUserWithTest("Alek Bolduin",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student2@gmail.com", "+380940112364", "Dnipro");
 
         Customer customer3 = userService.addUserWithTest("Osho",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student3@gmail.com", "+380940112364", "Kiev");
 
         Customer customer4 = userService.addUserWithTest("Eva Braun",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student4@gmail.com", "+380940112364", "Lviv");
 
         Customer customer5 = userService.addUserWithTest("Jack London",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student5@gmail.com", "+380940112364", "Kiev");
 
         Customer customer6 = userService.addUserWithTest("Ray Bradbury",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student6@gmail.com", "+380940112364", "Odessa");
 
         Customer customer7 = userService.addUserWithTest("Charlize Theron",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student7@gmail.com", "+380940112364", "Kiev");
 
         Customer customer8 = userService.addUserWithTest("Uzi Narkss",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student8@gmail.com", "+380940112364", "Kiev");
 
         Customer customer9 = userService.addUserWithTest("Stephen King",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student9@gmail.com", "+380940112364", "Kiev");
 
         Customer customer10 = userService.addUserWithTest("Giuseppe Tartini",
-                encoder.encode("password"),
+                encoder.encode(PASSWORD),
                 UserRole.STUDENT, "student10@gmail.com", "+380940112364", "Milan");
 
 
