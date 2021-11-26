@@ -21,7 +21,15 @@ public class TestService {
     public Test addTest(String subject, String question1, String question2,
                         String question3, String time, Degree degree, Customer customer) {
 
-        Test test = new Test(subject, question1, question2, question3, time, degree);
+        Test test = Test.builder()
+                .subject(subject)
+                .question1(question1)
+                .question2(question2)
+                .question3(question3)
+                .time(time)
+                .degree(degree)
+                .build();
+
         customer.addTest(test);
         testRepository.save(test);
         return test;
@@ -30,7 +38,16 @@ public class TestService {
     @Transactional()
     public Test addTestWithoutCustomer(String subject, String question1, String question2,
                                        String question3, String time, Degree degree) {
-        Test test = new Test(subject, question1, question2, question3, time, degree);
+
+        Test test = Test.builder()
+                .subject(subject)
+                .question1(question1)
+                .question2(question2)
+                .question3(question3)
+                .time(time)
+                .degree(degree)
+                .build();
+
         testRepository.save(test);
         return test;
     }

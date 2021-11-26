@@ -2,6 +2,7 @@ package com.example.newsb.service;
 
 import com.example.newsb.configuration.FulfillData;
 import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.Test;
 import com.example.newsb.repository.UserRepository;
 import com.example.newsb.entity.UserRole;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +47,16 @@ public class UserService {
         if (userRepository.existsByLogin(login))
             return false;
 
-        Customer custumer = new Customer(login, passHash, role, email, phone, address);
-        userRepository.save(custumer);
+                Customer customer = Customer.builder()
+                .login(login)
+                .password(passHash)
+                .role(role)
+                .email(email)
+                .phone(phone)
+                .address(address)
+                .build();
+
+        userRepository.save(customer);
 
         return true;
     }
@@ -57,9 +67,9 @@ public class UserService {
                                     String phone,
                                     String address) {
 
-        Customer custumer = new Customer(login, passHash, role, email, phone, address);
-        userRepository.save(custumer);
-        return custumer;
+        Customer customer = new Customer(login, passHash, role, email, phone, address);
+        userRepository.save(customer);
+        return customer;
     }
 
     @Transactional
