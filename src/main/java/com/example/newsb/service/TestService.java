@@ -21,7 +21,8 @@ public class TestService {
     public Test addTest(String subject, String question1, String question2,
                         String question3, String time, Degree degree, Customer customer) {
 
-        Test test = Test.builder()
+        Test test = Test
+                .builder()
                 .subject(subject)
                 .question1(question1)
                 .question2(question2)
@@ -39,7 +40,8 @@ public class TestService {
     public Test addTestWithoutCustomer(String subject, String question1, String question2,
                                        String question3, String time, Degree degree) {
 
-        Test test = Test.builder()
+        Test test = Test
+                .builder()
                 .subject(subject)
                 .question1(question1)
                 .question2(question2)
