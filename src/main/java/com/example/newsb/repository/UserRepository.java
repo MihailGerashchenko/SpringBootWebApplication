@@ -1,6 +1,7 @@
 package com.example.newsb.repository;
 
 import com.example.newsb.entity.Customer;
+import com.example.newsb.entity.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +16,8 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
             "END FROM Customer u WHERE u.login = :login")
     boolean existsByLogin(@Param("login") String login);
 
-    Page<Customer> findByLoginOrderByLogin(String subject, Pageable pageable);
+    Page<Customer> findByLoginOrderByLogin(String login, Pageable pageable);
 
-
+    Page<Customer> findAllByOrderByLogin(Pageable pageable);
 }
 

@@ -77,7 +77,7 @@ public class UserService {
 
     @Transactional
     public Page<Customer> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
+        return userRepository.findAllByOrderByLogin(pageable);
     }
 
     @Transactional

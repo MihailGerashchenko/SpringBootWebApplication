@@ -11,6 +11,6 @@ public interface TestRepository extends JpaRepository<Test, Long> {
 
     Page<Test> findBySubjectOrderBySubjectDesc(String subject, Pageable pageable);
 
-    Page<Test> findAll(Pageable pageable);
+    Page<Test> findAllByOrderBySubject(Pageable pageable);
 
 }
