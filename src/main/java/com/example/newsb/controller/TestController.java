@@ -3,9 +3,9 @@ package com.example.newsb.controller;
 import com.example.newsb.entity.Degree;
 import com.example.newsb.service.TestService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,8 +22,7 @@ public class TestController {
     }
 
     @PostMapping(value = "/createtest")
-    public String createTest(@Valid
-                             @RequestParam(required = false) String subject,
+    public String createTest(@RequestParam(required = false) String subject,
                              @RequestParam(required = false) String question1,
                              @RequestParam(required = false) String question2,
                              @RequestParam(required = false) String question3,

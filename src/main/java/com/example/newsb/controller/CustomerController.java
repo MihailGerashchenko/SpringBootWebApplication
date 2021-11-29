@@ -15,9 +15,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class CustomerController {
         this.passwordEncoder = passwordEncoder;
         this.testService = testService;
     }
+
 
     @GetMapping("/")
     public String index(Model model, @RequestParam(required = false) String filter,
@@ -76,8 +78,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/newuser")
-    public String update(@Valid
-                         @RequestParam String login,
+    public String update(@RequestParam String login,
                          @RequestParam String password,
                          @RequestParam(required = false) String email,
                          @RequestParam(required = false) String phone,
@@ -87,6 +88,7 @@ public class CustomerController {
         if (!userService.addUser(login, passHash, UserRole.STUDENT, email, phone, address)) {
             model.addAttribute("exists", true);
             model.addAttribute("login", login);
+
             return "register";
         }
         return "redirect:/";

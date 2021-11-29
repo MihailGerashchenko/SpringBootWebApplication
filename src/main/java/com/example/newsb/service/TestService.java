@@ -4,11 +4,13 @@ import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.Degree;
 import com.example.newsb.entity.Test;
 import com.example.newsb.repository.TestRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 public class TestService {
     private final TestRepository testRepository;
@@ -33,6 +35,7 @@ public class TestService {
 
         customer.addTest(test);
         testRepository.save(test);
+        log.info("Test with subject " + test.getSubject() + " was saved into database");
         return test;
     }
 
@@ -51,16 +54,17 @@ public class TestService {
                 .build();
 
         testRepository.save(test);
+        log.info("Test with subject " + test.getSubject() + " was saved into database");
         return test;
     }
 
     @Transactional
-    public Page<Test> findAll(Pageable pageable){
+    public Page<Test> findAll(Pageable pageable) {
         return testRepository.findAllByOrderBySubject(pageable);
     }
 
     @Transactional
-    public Page<Test> findBySubject(String subject, Pageable pageable){
+    public Page<Test> findBySubject(String subject, Pageable pageable) {
         return testRepository.findBySubjectOrderBySubjectDesc(subject, pageable);
     }
 }
