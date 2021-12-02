@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CustomerController {
@@ -42,14 +43,14 @@ public class CustomerController {
 
         User user = getCurrentUser();
         String login = user.getUsername();
-        Customer dbUser = userService.findByLogin(login);
+        Optional<Customer> dbUser = userService.findByLogin(login);
 
         model.addAttribute("login", login);
         model.addAttribute("roles", user.getAuthorities());
         model.addAttribute("admin", isAdmin(user));
-        model.addAttribute("email", dbUser.getEmail());
-        model.addAttribute("phone", dbUser.getPhone());
-        model.addAttribute("address", dbUser.getAddress());
+        model.addAttribute("email", dbUser.get().getEmail());
+        model.addAttribute("phone", dbUser.get().getPhone());
+        model.addAttribute("address", dbUser.get().getAddress());
 
         Page<Test> tests;
         if (filter != null && !filter.isEmpty()) {

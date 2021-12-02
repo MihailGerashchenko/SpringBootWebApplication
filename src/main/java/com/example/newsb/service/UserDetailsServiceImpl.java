@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,15 +24,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Customer costumer = userService.findByLogin(login);
-        if (costumer == null)
+        Optional<Customer> costumer = userService.findByLogin(login);
+        if (costumer.isEmpty())
             throw new UsernameNotFoundException(login + " not found");
         log.error("Student with login " + login + " not found");
 
+
         List<GrantedAuthority> roles = Arrays.asList(
-                new SimpleGrantedAuthority(costumer.getRole().toString())
+                new SimpleGrantedAuthority(costumer.get().getRole().toString())
         );
-        return new User(costumer.getLogin(), costumer.getPassword(), roles);
+        return new User(costumer.get().getLogin(), costumer.get().getPassword(), roles);
     }
 }
 

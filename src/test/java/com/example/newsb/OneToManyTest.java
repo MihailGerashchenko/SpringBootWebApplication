@@ -1,33 +1,15 @@
 package com.example.newsb;
 
 
-import com.example.newsb.controller.CustomerController;
 import com.example.newsb.entity.Customer;
 import com.example.newsb.entity.Degree;
 import com.example.newsb.entity.Test;
 import com.example.newsb.entity.UserRole;
-import org.junit.jupiter.api.Assertions;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 @SpringBootTest
@@ -70,15 +52,12 @@ public class OneToManyTest {
         assertNotNull(costumer);
     }
 
-
 //
 //    @org.junit.Test
 //    public void testHomePage() throws Exception {
 //        mockMvc.perform(get("/login"))
 //                .andExpect(status().isOk())
-//                .andExpect(view().name("login.jsp"))
-//                .andExpect(content().string(
-//                        containsString("Логин")));
+//                .andExpect(view().name("login.jsp"));
 //    }
 
 //    @org.junit.Test

@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class TestService {
@@ -20,8 +22,8 @@ public class TestService {
     }
 
     @Transactional
-    public Test addTest(String subject, String question1, String question2,
-                        String question3, String time, Degree degree, Customer customer) {
+    public Optional<Test> addTest(String subject, String question1, String question2,
+                                 String question3, String time, Degree degree, Customer customer) {
 
         Test test = Test
                 .builder()
@@ -36,11 +38,11 @@ public class TestService {
         customer.addTest(test);
         testRepository.save(test);
         log.info("Test with subject " + test.getSubject() + " was saved into database");
-        return test;
+        return Optional.of(test);
     }
 
     @Transactional()
-    public Test addTestWithoutCustomer(String subject, String question1, String question2,
+    public Optional<Test> addTestWithoutCustomer(String subject, String question1, String question2,
                                        String question3, String time, Degree degree) {
 
         Test test = Test
@@ -55,7 +57,7 @@ public class TestService {
 
         testRepository.save(test);
         log.info("Test with subject " + test.getSubject() + " was saved into database");
-        return test;
+        return Optional.of(test);
     }
 
     @Transactional

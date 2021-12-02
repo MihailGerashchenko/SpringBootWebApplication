@@ -24,7 +24,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Customer findByLogin(String login) {
+    public Optional<Customer> findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 
@@ -66,12 +66,12 @@ public class UserService {
     }
 
     @Transactional
-    public Customer addUserWithTest(String login, String passHash, UserRole role,
-                                    String email, String phone, String address) {
+    public Optional<Customer> addUserWithTest(String login, String passHash, UserRole role,
+                                              String email, String phone, String address) {
 
         if (userRepository.existsByLogin(login)) {
             log.error("Student with login " + login + " already exists");
-            return null;
+            return Optional.empty();
         }
 
         Customer customer = Customer
@@ -87,23 +87,24 @@ public class UserService {
 
         userRepository.save(customer);
         log.info("Student with login " + login + " saved in database");
-        return customer;
+        return Optional.of(customer);
     }
 
     @Transactional
     public void updateUser(String login, String email, String phone, String address) {
-        Customer user = userRepository.findByLogin(login);
-        if (user == null) {
+        Optional<Customer> user = userRepository.findByLogin(login);
+        if (user.isPresent()) {
+            user.get().setEmail(email);
+            user.get().setPhone(phone);
+            user.get().setAddress(address);
+
+            userRepository.save(user.get());
+            log.info("Student with login " + login + " updated");
+        } else {
             log.error("Student with login " + login + " does not exist");
-            return;
+            throw new IllegalStateException("Update was not performed");
         }
 
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setAddress(address);
-
-        userRepository.save(user);
-        log.info("Student with login " + login + " updated");
     }
 
     @Transactional
