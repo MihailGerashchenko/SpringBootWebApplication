@@ -23,7 +23,7 @@ public class TestService {
 
     @Transactional
     public Optional<Test> addTest(String subject, String question1, String question2,
-                                 String question3, String time, Degree degree, Customer customer) {
+                                  String question3, String time, Degree degree, Customer customer) {
 
         Test test = Test
                 .builder()
@@ -43,7 +43,7 @@ public class TestService {
 
     @Transactional()
     public Optional<Test> addTestWithoutCustomer(String subject, String question1, String question2,
-                                       String question3, String time, Degree degree) {
+                                                 String question3, String time, Degree degree) {
 
         Test test = Test
                 .builder()
