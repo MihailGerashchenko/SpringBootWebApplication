@@ -70,8 +70,4 @@ public class TestService {
         return testRepository.findBySubjectOrderBySubjectDesc(subject, pageable);
     }
 
-//    @Transactional(readOnly = true)
-//    public Page<Customer> findByLogin(String login, Pageable pageable) {
-//        return userRepository.findByLoginOrderByLogin(login, pageable);
-//    }
 }

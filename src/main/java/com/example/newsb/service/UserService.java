@@ -117,10 +117,5 @@ public class UserService {
     public Page<Customer> findByLogin(String login, Pageable pageable) {
         return userRepository.findByLoginOrderByLogin(login, pageable);
     }
-
-//    @Transactional(readOnly = true)
-//    public Page<Customer> findByLogin(String login, Pageable pageable) {
-//        return userRepository.findByLoginOrderByLogin(login, pageable);
-//    }
 }
 
