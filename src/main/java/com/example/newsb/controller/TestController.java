@@ -29,6 +29,7 @@ public class TestController {
                              @RequestParam(required = false) String time,
                              @RequestParam(required = false) Degree degree) {
         System.out.println("a");
+        System.out.println("a");
         testService.addTestWithoutCustomer(subject, question1, question2, question3, time, degree);
         return "redirect:/";
     }
