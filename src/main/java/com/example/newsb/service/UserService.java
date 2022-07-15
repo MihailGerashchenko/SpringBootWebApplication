@@ -107,13 +107,13 @@ public class UserService {
 
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Page<Customer> findAll(Pageable pageable) {
         return userRepository.findAllByOrderByLogin(pageable);
 
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Page<Customer> findByLogin(String login, Pageable pageable) {
         return userRepository.findByLoginOrderByLogin(login, pageable);
     }
