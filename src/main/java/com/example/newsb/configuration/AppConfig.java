@@ -49,6 +49,5 @@ public class AppConfig extends GlobalMethodSecurityConfiguration implements WebM
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
 
