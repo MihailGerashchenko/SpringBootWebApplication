@@ -2,5 +2,5 @@ package com.example.newsb;
 
 public class File1 {
     private int l;
-    String goodEveningFromMaster;
+    private String goodEveningFromMaster;
 }
