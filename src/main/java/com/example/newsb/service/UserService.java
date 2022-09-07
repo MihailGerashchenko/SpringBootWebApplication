@@ -104,13 +104,11 @@ public class UserService {
             log.error("Student with login " + login + " does not exist");
             throw new IllegalStateException("Update was not performed");
         }
-
     }
 
     @Transactional
     public Page<Customer> findAll(Pageable pageable) {
         return userRepository.findAllByOrderByLogin(pageable);
-
     }
 
     @Transactional

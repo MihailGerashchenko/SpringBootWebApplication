@@ -151,6 +151,5 @@ public class CustomerController {
     private boolean isAdmin(User user) {
         Collection<GrantedAuthority> roles = user.getAuthorities();
         return roles.stream().anyMatch(auth -> "ROLE_ADMIN".equals(auth.getAuthority()));
-
     }
 }
