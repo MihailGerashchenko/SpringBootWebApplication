@@ -60,12 +60,12 @@ public class TestService {
         return Optional.of(test);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Test> findAll(Pageable pageable) {
         return testRepository.findAllByOrderBySubject(pageable);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Test> findBySubject(String subject, Pageable pageable) {
         return testRepository.findBySubjectOrderBySubjectDesc(subject, pageable);
     }
